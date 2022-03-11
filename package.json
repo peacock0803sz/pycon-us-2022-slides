@@ -1,10 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "build": "slidev build",
-    "build:html": "slidev build pycon-us-2022.md",
+    "build": "slidev build pycon-us-2022.md",
     "dev": "slidev pycon-us-2022.md",
-    "export": "slidev export"
+    "export": "slidev export pycon-us-2022.md"
   },
   "dependencies": {
     "@slidev/cli": "^0.28.9",
