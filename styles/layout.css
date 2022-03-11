@@ -18,9 +18,12 @@
     @apply mt-10;
   }
 } */
+.slidev-layout.intro {
+  background-image: url('public/images/intro.png')
+}
 
 .slidev-layout.intro h1 {
-  @apply text-left font-bold;
+  @apply text-left font-bold
   font: normal normal normal 'Futura DC D';
   letter-spacing: 0px;
   opacity: 1;
@@ -33,6 +36,9 @@
   opacity: 1;
 }
 
+.slidev-layout.section {
+  background-image: url('public/images/section.png')
+}
 .slidev-layout.section h1 {
   @apply text-left font-bold;
   font: normal normal bold Texta;
@@ -47,12 +53,22 @@
   opacity: 1;
 }
 
+.slidev-layout.default h1 {
+  @apply text-4xl;
+}
+.slidev-layout.default h2 {
+  @apply text-3xl py-1 my-1;
+}
 .slidev-layout.default {
-  @apply text-xl m-auto;
+  background-image: url('public/images/default.png');
+  @apply text-2xl;
   font: normal normal bold Texta;
   letter-spacing: 0px;
   opacity: 1;
 }
-.slidev-layout.default code {
-  @apply text-1xl;
+.slidev-layout.default pre > code {
+  @apply text-lg;
+}
+.slidev-layout.fact {
+  background-image: url('public/images/intro.png')
 }

@@ -13,17 +13,11 @@ defaults:
     layout: 'default'
 
 layout: intro
-image: image/intro.png
 ---
 
 # Getting Started <br> with Statically Typed Programming <br> in Python 3.10
 
-<div class="absolute bottom-10">
-  <span class="font-500">
-    Peacock (Yoichi Takai), at PyCon US 2022
-  </span>
-</div>
-
+## Peacock (Yoichi Takai), at PyCon US 2022
 <!-- Hi, let's start. my talk title is ...-->
 
 ---
@@ -113,7 +107,7 @@ Slides: <https://slides.peacock0803sz.com/us-pycon-2022/>
     - In Python 3.5, at 2015
 - Several big PEPs were adopted and updated over the years
 - Even now, I think many people **don't know where to start**
-	- Because there is little coherent information
+    - Because there is little coherent information
 
 ---
 
@@ -153,11 +147,11 @@ layout: section
 
 ## Without the type hint
 
-<img src="/images/1.png" class="h-40">
+<img src="/images/1.png" class="h-55 my-5">
 
 We don't know the error...
 
-<img src="/images/2.png" class="h-30">
+<img src="/images/2.png" class="h-35 my-5">
 
 
 ---
@@ -166,31 +160,33 @@ We don't know the error...
 
 ## With the type hint
 
-<img src="/images/3.png" class="h-30">
+<img src="/images/3.png" class="h-45 my-5">
 
 <!-- and, the editor can tell the argument is wrong -->
 
 ## Editor tells a wrong argument
 
-<img src="/images/4.png" class="h-25">
+<img src="/images/4.png" class="h-35 my-5">
 
 
 ---
 
 <!-- and more, there are advantages to code review. -->
+<!-- w/o type hint, reviewer, can't know the return type from reading the definition. -->
+<!-- As a result, many people may have had this experience. -->
 
 # In a code review
 
 The reviewer can know variables or function returns types.
 
-<!-- w/o type hint, reviewer, can't know the return type from reading the definition. -->
-<!-- As a result, many people may have had this experience. -->
-
 ## Without the type hint
 
 Boss < What type does this function return?
+
 You < Humm... str or False or None ...?
+
 Boss < THAT'S TOO MANY TYPES!
+
 You < :-(
 
 ```py {2|3|4}
@@ -207,8 +203,11 @@ def need_new_post():
 ## With the type hint
 
 Boss < It looks like this function may return 3 types... Isn't that too much?
+
 You < I see. That could be a bad design. Let me fix it.
+
 Boss < Sure, please.
+
 
 ```py {1|2|3|4}
 def need_new_post() -> None | False | str:
@@ -258,14 +257,13 @@ very_dangerous_last_resort: Any
         - 3.9 and later only
         - 3.7, 3.8 write `from __future__ import annotaions` (see below)
         - 3.6: import annotations starting with uppercase letters from `typing` (next section)
-    - ref: [official documentation ](https://docs.python.org/3.9/whatsnew/3.9.html#type-hinting-generics-in-standard-collections)
+    - ref: [official documentation](https://docs.python.org/3.9/whatsnew/3.9.html#type-hinting-generics-in-standard-collections)
 
 ---
 
 - Until 3.8, it was from `typing`, but now it's depreciated.
 - For `__builtins__` start with lowercase without doing anything.
     - Such as `list`, `tuple`, and `dict` etc...
-
 - For `collections` (ex: deque, defaultdict, ...), import modules start with `collections`
 - iterable, callable, and other protocol-related items import modules start with `collections.abc`.
 - regular expressions from `re`. 
@@ -273,20 +271,23 @@ very_dangerous_last_resort: Any
 
 ---
 
+<!-- because of the way of writing described before. -->
+
 # (Deprecated since 3.9) import from typing module
 
 - For Generics, until 3.9, you had to write `from typing import ...`
     - Such as `Dict`, `List` and `Tuple` etc...
 - From 3.9, it's deprecated.
 
-<!-- because of the way of writing described before. -->
-
 ```py
 from typing import Dict, List, Tuple, ...  # before 3.9
 def some_function() -> Tuple[List[int], Dict[str, bool]]: pass
 ```
 
+<div>
 Since 3.9, no more need these import statement!
+</div>
+
 ```py
 def some_function() -> tuple[list[int], dict[str, bool]]: pass
 ```
@@ -352,9 +353,9 @@ VView[ValuesView] --> C[Colleciton]
 
 - Tuples are fixed up to the length information
     - Specify the type for the number of elements
-        - Or you can mix types, such as tuple[int, str, float]. 
-- A sequence, such as a list, has the same constraint for all elements in the element
-    - Can be used regardless of the length of the sequence by setting only one element.
+        - Or you can mix types, such as `tuple[int, str, float]`.
+- A sequence, such as a list, has the same constraint for all elements
+    - Can be used regardless of the length of the sequence by setting only one.
 
 ---
 layout: section
@@ -373,8 +374,7 @@ layout: section
 - `Union`: merged type, can be represented by `|` since 3.10
     - You've probably seen it on Haskell or TypeScript
 
-```py {2}
-from __future__ import annotations
+```py {1}
 def square(number: int | float) -> int | float:
     return number ** 2
 ```
@@ -382,9 +382,9 @@ def square(number: int | float) -> int | float:
 Union objects can be tested for equality with other union objects.
 
 ```py {1|2|3|4}
-(int | str) | float == int | str | float  # Unions of unions are flattened
+(int | str) | float == int | str | float  # Nested unions are flattened
 int | str | int == int | str              # Redundant types are removed
-int | str == str | int                    # the order is ignored
+int | str == str | int                    # Order is ignored
 int | str == typing.Union[int, str]       # Compatible with typing.Union
 ```
 
@@ -439,26 +439,20 @@ In this case
 
 It can be used when writing functions that take a function as an argument, such as decorator functions.
 
-```py {1,2,3|6|11,12|13|14,15|16}
+```py {1,2|4|5,6|8,9|10,11|12}
 from collections.abc import Callable  # since 3.9
 from functools import wraps
-from typing import Literal
-def validate(
-    func: Callable,
-) -> Callable[..., Callable | tuple[Response, Literal[400]]]:
+
+def validate(func: Callable) -> Callable[..., Callable]:
     @wraps(func)
-    def wrapper(*args, **kw) -> Callable | tuple[Response, Literal[400]]:
+    def wrapper(*args, **kw) -> Callable:
         try:
             j = request.json
-            if j is None:
-                raise BadRequest
+            if j is None: raise BadRequest
         except BadRequest:
-            j = jsonify({"data": [], "errors": {"message": ERR_MSG, "code": 400}})
-            return r, 400
+            return abort(400)
         return func(*args, **kw)
-
     return wrapper
-
 ```
 
 ---
@@ -499,7 +493,7 @@ layout: section
 
 # Recent Python updates
 
-https://www.python.org/downloads/
+<https://www.python.org/downloads/>
 
 | Ver. | Status   | Release | EoS     | Release PEP                                      | Main new feature          |
 | ---- | -------- | ------- | ------- | ------------------------------------------------ | ------------------------- |
@@ -551,13 +545,23 @@ int | str == typing.Union[int, str]  # Compatible with typing.Union
 - Tring to write a generic decorator, it's difficult to write the type
 - Needed a way to represent a function that has the **same arguments as the specified function**
 
-```py {4,5|10-}
+## Approach
+
+- Adding an argument type called `ParameterSpecification` solves the problem.
+- It can be used with `Callable` to behave like a generic callable object. (You can think of it as an argument version of `TypeVar`.)
+
+---
+
+## Before
+
+```py {4,5,6|11-}
 from typing import Callable, TypeVar
 Ps, R = TypeVar("Ps"), TypeVar("R")
 
 def add_logging(f: Callable[Ps, R]) -> Callable[Ps, R]:
-    def inner(*args, **kwargs) -> R:  # args: tuple...?, kwargs: dict...?
-        log_to_database()
+    # args: tuple...?, kwargs: dict...?
+    def inner(*args, **kwargs) -> R:
+        log_to_database(*args, **kwargs)
         return f(*args, **kwargs)
     return inner
 
@@ -568,10 +572,7 @@ def foo(x: int, y: str) -> int:
 
 ---
 
-## Approach
-
-- Adding an argument type called `ParameterSpecification` solves the problem.
-- It can be used with `Callable` to behave like a generic callable object. (You can think of it as an argument version of `TypeVar`.)
+## After
 
 ```py {2|4,5|10-}
 from typing import Callable, ParameterSpecification, TypeVar
@@ -579,7 +580,7 @@ Ps, R = ParameterSpecification("Ps"), TypeVar("R")
 
 def add_logging(f: Callable[Ps, R]) -> Callable[Ps, R]:
     def inner(*args: Ps.args, **kwargs: Ps.kwargs) -> R:
-        log_to_database()
+        log_to_database(*args, **kwargs)
         return f(*args, **kwargs)
     return inner
 
@@ -606,15 +607,12 @@ def foo(x: int, y: str) -> int: return x + 7
 - Variables defined at the global level are considered type aliases.
 - Using ForwardReference, you can write `T: TypeAlias = "int"`.
 
-## Example
 
-```py {1,2|4,5|7,8}
+```py {1,2|3,4|5,6}
 x = 1  # untyped global expression
 x: int = 1  # typed global expression
-
 x = int  # untyped global expression
 x: Type[int] = int  # typed global expression
-
 x: TypeAlias = int  # type alias
 x: TypeAlias = “MyClass”  # type alias
 ```
@@ -669,7 +667,9 @@ def is_str_list(val: List[object]) -> TypeGuard[List[str]]:
 And, type narrowing works like this:
 
 ```py
-def is_two_element_tuple(val: Tuple[str, ...]) -> TypeGuard[Tuple[str, str]]:
+def is_two_element_tuple(
+    val: Tuple[str, ...]
+) -> TypeGuard[Tuple[str, str]]:
     return len(val) == 2
 
 OneOrTwoStrs = Union[Tuple[str], Tuple[str, str]]
@@ -698,13 +698,13 @@ def func(val: OneOrTwoStrs):
 
 <!-- There are links that I referenced -->
 
-- https://docs.python.org/3/library/typing.html
-- https://docs.python.org/3.10/whatsnew/3.10.html
-- http://mypy-lang.org
-- https://future-architect.github.io/articles/20201223 (ja)
-- https://qiita.com/tk0miya/items/931da13af292060356b9 (ja)
-- https://qiita.com/tk0miya/items/1b093c2eee7668fffb62 (ja)
-- https://qiita.com/tk0miya/items/a27191f5d627601930ed (ja)
+- <https://docs.python.org/3/library/typing.html>
+- <https://docs.python.org/3.10/whatsnew/3.10.html>
+- <http://mypy-lang.org>
+- <https://future-architect.github.io/articles/20201223> (ja)
+- <https://qiita.com/tk0miya/items/931da13af292060356b9> (ja)
+- <https://qiita.com/tk0miya/items/1b093c2eee7668fffb62> (ja)
+- <https://qiita.com/tk0miya/items/a27191f5d627601930ed> (ja)
 
 
 ---
