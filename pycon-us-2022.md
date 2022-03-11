@@ -1,24 +1,23 @@
 ---
-title: 'Getting Started with Statically Typed Programming in Python 3.10'
+title: Getting Started with Statically Typed Programming in Python 3.10
 titleTemplate: '%s'
 lineNumbers: true
-
 theme: apple-basic
-aspectRatio: '16/9'
+aspectRatio: 16/9
 canvasWidth: 960
-
-favicon: 'https://peacock0803sz.com/favicon.ico'
-
+favicon: https://peacock0803sz.com/favicon.ico
 defaults:
-    layout: 'default'
-
+  layout: default
 layout: intro
 ---
 
 # Getting Started <br> with Statically Typed Programming <br> in Python 3.10
 
 ## Peacock (Yoichi Takai), at PyCon US 2022
-<!-- Hi, let's start. my talk title is ...-->
+
+<!--
+Hi, let's start. my talk title is ...
+-->
 
 ---
 layout: section
@@ -46,11 +45,12 @@ Slides: <https://slides.peacock0803sz.com/us-pycon-2022/>
 </div>
 ---
 
-<!-- If you have any questions or comments, please write here. I'd love to hear from you during the talk. -->
-<!-- Nice to meet you. Hello EuroPython! -->
-
-<!-- let me introduce myself. -->
-<!-- In addition to my work, I'm also involved at the PyCon JP Association -->
+<!--
+If you have any questions or comments, please write here. I'd love to hear from you during the talk.
+Nice to meet you. Hello EuroPython!
+let me introduce myself.
+In addition to my work, I'm also involved at the PyCon JP Association
+-->
 
 # Self-introduction
 
@@ -86,7 +86,9 @@ Slides: <https://slides.peacock0803sz.com/us-pycon-2022/>
 
 ---
 
-<!-- this is today's topic. -->
+<!--
+this is today's topic.
+-->
 
 # Today's topic
 
@@ -98,8 +100,10 @@ Slides: <https://slides.peacock0803sz.com/us-pycon-2022/>
 
 ---
 
-<!-- My motivation for talking is to get the word out in a coherent way. -->
-<!-- It's been five years (Python 3.5, at 2015) since typing appeared -->
+<!--
+My motivation for talking is to get the word out in a coherent way.
+It's been five years (Python 3.5, at 2015) since typing appeared
+-->
 
 # Why do I talk about typing?
 
@@ -124,14 +128,18 @@ Slides: <https://slides.peacock0803sz.com/us-pycon-2022/>
 layout: section
 ---
 
-<!-- OK, Let's take a look at how to actually start Typing! -->
+<!--
+OK, Let's take a look at how to actually start Typing!
+-->
 
 # Introduction of typing
 ## How to write basically
 
 ---
 
-<!-- First, let's look at what typing can do for you. -->
+<!--
+First, let's look at what typing can do for you.
+-->
 
 # What makes you happy?
 
@@ -141,9 +149,11 @@ layout: section
 
 ---
 
-<!-- this is a minimal example. -->
-<!-- we don't know the type of return value... -->
-<!-- if try to pass int to the function, it'll occur an error -->
+<!--
+this is a minimal example.
+we don't know the type of return value...
+if try to pass int to the function, it'll occur an error
+-->
 
 ## Without the type hint
 
@@ -155,13 +165,15 @@ We don't know the error...
 
 ---
 
-<!-- How about this case? It looks like s is str, a return value is also str.-->
+<!--
+How about this case? It looks like s is str, a return value is also str.
+-->
 
 ## With the type hint
 
 <img src="/images/3.png" class="h-45 my-5">
 
-<!-- and, the editor can tell the argument is wrong -->
+and, the editor can tell the argument is wrong
 
 ## Editor tells a wrong argument
 
@@ -169,9 +181,11 @@ We don't know the error...
 
 ---
 
-<!-- and more, there are advantages to code review. -->
-<!-- w/o type hint, reviewer, can't know the return type from reading the definition. -->
-<!-- As a result, many people may have had this experience. -->
+<!--
+and more, there are advantages to code review.
+w/o type hint, reviewer, can't know the return type from reading the definition.
+As a result, many people may have had this experience.
+-->
 
 # In a code review
 
@@ -196,7 +210,9 @@ def need_new_post():
 
 ---
 
-<!-- However, Type hint may make the review process more smooth. -->
+<!--
+However, Type hint may make the review process more smooth.
+-->
 
 ## With the type hint
 
@@ -224,9 +240,11 @@ def need_new_post() -> None | False | str:
 
 ---
 
-## Using built-in types
+<!--
+now, Let's take a look at the types that can be used in practice.
+-->
 
-<!-- now, Let's take a look at the types that can be used in practice. -->
+## Using built-in types
 
 - `bool`, `bytes`, `float`, `int`, `str`
     - you don't need to do anything to use them.
@@ -234,7 +252,9 @@ def need_new_post() -> None | False | str:
 
 ## Escaping from type puzzles
 
-<!-- If you want to escape from complex type puzzles, you can use any. this is the final resort. -->
+<!--
+If you want to escape from complex type puzzles, you can use any. this is the final resort.
+-->
 
 - `Any` Can hold instances of any type.
 - It's better not to use it.
@@ -268,7 +288,9 @@ very_dangerous_last_resort: Any
 
 ---
 
-<!-- because of the way of writing described before. -->
+<!--
+because of the way of writing described before.
+-->
 
 # (Deprecated since 3.9) import from typing module
 
@@ -291,12 +313,15 @@ def some_function() -> tuple[list[int], dict[str, bool]]: pass
 
 ---
 
-# Using different types of collections
+<!--
+There are many types in collections.abc.
+Although it's unlikely that you will use these in a fine-grained way,
+It's better to choose a collection with as few methods as possible to increase portability.
+The following figure shows the relationship between collections.abc and a sequence of built-in types defined by method inclusion rather than implementation inheritance.
+It is a good idea to look at the methods used in your functions and choose the types on the left side of this diagram as much as possible.
+-->
 
-<!-- There are many types in `collections.abc.`  -->
-<!-- Although it's unlikely that you will use these in a fine-grained way, It's better to choose a collection with as few methods as possible to increase portability. -->
-<!-- The following figure shows the relationship between `collections.abc` and a sequence of built-in types defined by method inclusion rather than implementation inheritance.  -->
-<!-- It is a good idea to look at the methods used in your functions and choose the types on the left side of this diagram as much as possible. -->
+# Using different types of collections
 
 - There are many types in `collections.abc`.
 - It's better to use a collection with a few methods to increase portability.
@@ -307,6 +332,18 @@ def some_function() -> tuple[list[int], dict[str, bool]]: pass
     - Choose the types on the left side of this diagram as much as possible.
 
 ---
+
+<!--
+The further to the left you go, the fewer methods it has. To the right, the more methods it has.
+For example, if you just want to loop over a sequence of arguments in a function, you can use collections.abc.Iterable.
+If you need random access, use Sequence.
+If you need to change the value, use a type with Mutable.
+
+Or, if you simply specify list as the argument type, you will not be able to pass set or dict.
+In particular, it is better not to set concrete types (list, tuple, dictionary, set) just because you are familiar with them.
+However, I think it is easier to understand using these concrete types, so you may want to first apply these concrete types.
+After you confirm that you can use fewer operators and methods, you may want to gradually move to the left side of the types.
+-->
 
 <div class="absolute top-5">
 
@@ -334,16 +371,6 @@ VView[ValuesView] --> C[Colleciton]
 
 </div>
 
-<!-- The further to the left you go, the fewer methods it has. -->
-<!-- To the right, the more methods it has. -->
-
-<!-- For example, if you just want to loop over a sequence of arguments in a function, you can use collections.abc.Iterable. Iterable. If you need random access, use Sequence. If you need to change the value, use a type with Mutable. -->
-
-<!-- Or, if you simply specify list as the argument type, you will not be able to pass set or dict. In particular, it is better not to set concrete types (list, tuple, dictionary, set) just because you are familiar with them. However, I think it is easier to understand using these concrete types, so you may want to first apply these concrete types. After you confirm that you can use fewer operators and methods, you may want to gradually move to the left side of the types. -->
-
-<!-- TODO: REPLACE with mermeid! -->
-<!-- <img src="/images/collections-8.jpg" class="h-110"> -->
-
 ---
 
 # The difference between tuple and others Sequences
@@ -360,11 +387,15 @@ layout: section
 
 # A little more advanced: Generics type
 
-<!-- Next, there are few advanced types. -->
+<!--
+Next, there are few advanced types.
+-->
 
 ---
 
-<!-- at first is union, merged type. top half code is an Example A function that accepts both integers and floats bottom one is Union objects can be tested for equality with other union objects. -->
+<!--
+at first is union, merged type. top half code is an Example A function that accepts both integers and floats bottom one is Union objects can be tested for equality with other union objects.
+-->
 
 # Union (Mager type)
 
@@ -386,8 +417,6 @@ int | str == typing.Union[int, str]       # Compatible with typing.Union
 ```
 
 ---
-
-<!-- A generic type is typically declared by inheriting from an instantiation of this class with one or more type variables. -->
 
 # Optional type
 
@@ -433,9 +462,11 @@ In this case
 
 ---
 
-# Callable (callable object)
-
+<!--
 It can be used when writing functions that take a function as an argument, such as decorator functions.
+-->
+
+# Callable (callable object)
 
 ```py {1,2|4|5,6|8,9|10,11|12}
 from collections.abc import Callable  # since 3.9
@@ -455,7 +486,9 @@ def validate(func: Callable) -> Callable[..., Callable]:
 
 ---
 
-<!-- A generic type is typically declared by inheriting from an instantiation of this class with one or more type variables. -->
+<!--
+A generic type is typically declared by inheriting from an instantiation of this class with one or more type variables.
+-->
 
 # User-defined Generic types
 
@@ -487,7 +520,9 @@ layout: section
 
 ---
 
-<!-- this is an updated overview recently. -->
+<!--
+this is an updated overview recently.
+-->
 
 # Recent Python updates
 
@@ -504,8 +539,10 @@ layout: section
 
 ---
 
-<!-- Let's talk about dunder future, which has come up many times before. -->
-<!-- Modules and methods with two underscores at either end are pronounced dunder. -->
+<!--
+Let's talk about dunder future, which has come up many times before.
+Modules and methods with two underscores at either end are pronounced dunder.
+-->
 
 # What is the `__future__` module: (dunder future)?
 
@@ -518,7 +555,7 @@ layout: section
 
 ---
 
-<!-- next topic is new features in python3.10, will be released Nov. this year there is a difficult feature. I'm not sure I can explain it well, either. -->
+next topic is new features in python3.10, will be released Nov. this year there is a difficult feature. I'm not sure I can explain it well, either.
 
 # New Features Related to Type Hints in 3.10
 
@@ -651,10 +688,12 @@ However, that will not work as intended if the user function is used.
 
 ---
 
-<!-- The type checker assumes that the first argument matches the type specified in TypeGuard, if the function returns True. In the above example, data that passes is_str_list() will be treated as List[str]. -->
+<!--
+The type checker assumes that the first argument matches the type specified in TypeGuard, if the function returns True. In the above example, data that passes is_str_list() will be treated as List[str].
 
-<!-- Note that if this function returns False, type narrowing will not be performed. -->
-<!-- In the following example, if is_two_element_tuple(...) block, the type is narrowed to Tuple[str, str] as a result of type narrowing, while in the else block, the type remains unchanged. -->
+Note that if this function returns False, type narrowing will not be performed.
+In the following example, if is_two_element_tuple(...) block, the type is narrowed to Tuple[str, str] as a result of type narrowing, while in the else block, the type remains unchanged.
+-->
 
 ```py
 from typing import TypeGuard
@@ -693,7 +732,7 @@ def func(val: OneOrTwoStrs):
 
 # Pages I used for reference (Thanks)
 
-<!-- There are links that I referenced -->
+There are links that I referenced
 
 - <https://docs.python.org/3/library/typing.html>
 - <https://docs.python.org/3.10/whatsnew/3.10.html>
