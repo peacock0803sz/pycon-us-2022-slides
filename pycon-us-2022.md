@@ -153,7 +153,6 @@ We don't know the error...
 
 <img src="/images/2.png" class="h-35 my-5">
 
-
 ---
 
 <!-- How about this case? It looks like s is str, a return value is also str.-->
@@ -167,7 +166,6 @@ We don't know the error...
 ## Editor tells a wrong argument
 
 <img src="/images/4.png" class="h-35 my-5">
-
 
 ---
 
@@ -207,7 +205,6 @@ Boss < It looks like this function may return 3 types... Isn't that too much?
 You < I see. That could be a bad design. Let me fix it.
 
 Boss < Sure, please.
-
 
 ```py {1|2|3|4}
 def need_new_post() -> None | False | str:
@@ -266,7 +263,7 @@ very_dangerous_last_resort: Any
     - Such as `list`, `tuple`, and `dict` etc...
 - For `collections` (ex: deque, defaultdict, ...), import modules start with `collections`
 - iterable, callable, and other protocol-related items import modules start with `collections.abc`.
-- regular expressions from `re`. 
+- regular expressions from `re`.
 - Context-related items are available in `contextlib`.
 
 ---
@@ -404,6 +401,7 @@ age: Optional[int]
 age = 17
 age = None # This is also valid
 ```
+
 ---
 
 # Avoid using Optional as much as possible
@@ -593,6 +591,7 @@ def foo(x: int, y: str) -> int: return x + 7
 # PEP 613: TypeAlias
 
 ## Motivation
+
 - We consider global variables without type hints to be type aliases.
     - This tends to cause problems with forwarding references, scoping, etc.
     - So, we're going to make it possible to explicitly define type aliases.
@@ -606,7 +605,6 @@ def foo(x: int, y: str) -> int: return x + 7
     - Write a variable of type alias type like `T: TypeAlias = int`
 - Variables defined at the global level are considered type aliases.
 - Using ForwardReference, you can write `T: TypeAlias = "int"`.
-
 
 ```py {1,2|3,4|5,6}
 x = 1  # untyped global expression
@@ -680,7 +678,6 @@ def func(val: OneOrTwoStrs):
 
 ---
 
-
 # Summary
 
 1. Introduction
@@ -706,11 +703,8 @@ def func(val: OneOrTwoStrs):
 - <https://qiita.com/tk0miya/items/1b093c2eee7668fffb62> (ja)
 - <https://qiita.com/tk0miya/items/a27191f5d627601930ed> (ja)
 
-
 ---
 layout: fact
 ---
 
 # Thank you!
-
-
