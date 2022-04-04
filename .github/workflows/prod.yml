@@ -43,6 +43,7 @@ jobs:
       env:
         S3_REPOSITORY: s3://${{ env.S3_BUCKET }}
       run: |
+        mkdir -p ./dist/pycon-us-2022/
         yarn
         yarn build --base /pycon-us-2022/
         aws s3 sync ./dist $S3_REPOSITORY/pycon-us-2022
