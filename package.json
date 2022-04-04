@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@slidev/cli": "^0.28.9",
-    "@slidev/theme-apple-basic": "^0.20.0"
+    "@slidev/theme-bricks": "^0.0.2"
   },
   "name": "pycon-us-2022"
 }
