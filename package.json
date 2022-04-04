@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "build": "slidev build pycon-us-2022.md",
+    "build:aws": "slidev build pycon-us-2022.md --base /pyconus2022/",
     "dev": "slidev pycon-us-2022.md",
     "export": "slidev export pycon-us-2022.md"
   },
