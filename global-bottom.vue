@@ -1,7 +1,20 @@
 <template>
   <footer
-    v-if="$slidev.nav.currentLayout !== 'intro'"
-    class="absolute bottom-2 text-right left-0 right-0 p-2 text-2xl"
+    v-if="
+      $slidev.nav.currentLayout !== 'cover' &&
+      $slidev.nav.currentLayout !== 'intro'
+    "
+    class="
+      absolute
+      bottom-1
+      text-right
+      left-0
+      right-0
+      p-5
+      text-2xl
+      font-bold
+      text-gray-750
+    "
   >
     {{ $slidev.nav.currentPage }} / {{ $slidev.nav.total }}
   </footer>

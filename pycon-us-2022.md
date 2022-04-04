@@ -2,25 +2,27 @@
 title: Getting Started with Statically Typed Programming in Python 3.10
 titleTemplate: '%s'
 lineNumbers: true
-theme: apple-basic
+theme: bricks
 aspectRatio: 16/9
 canvasWidth: 960
 favicon: https://peacock0803sz.com/favicon.ico
 defaults:
   layout: default
-layout: intro
+layout: cover
+fonts:
+  sans: Texta Alt
 ---
 
-# Getting Started <br> with Statically Typed Programming <br> in Python 3.10
+# Getting Started <br> with Statically Typed Programming in Python 3.10
 
-## Peacock (Yoichi Takai), at PyCon US 2022
+## Peacock (Yoichi Takai), at PyCon US 2022 (2022/05/01)
 
 <!--
 Hi, let's start. my talk title is ...
 -->
 
 ---
-layout: section
+layout: intro
 ---
 
 # Prolog
@@ -39,18 +41,12 @@ Slides: <https://slides.peacock0803sz.com/us-pycon-2022/>
 </div>
 
 <div>
-    <img src="/images/qrcode.png" class="v-auto">
+  <img src="/images/qrcode.png" class="v-auto">
 </div>
 
 </div>
+
 ---
-
-<!--
-If you have any questions or comments, please write here. I'd love to hear from you during the talk.
-Nice to meet you. Hello EuroPython!
-let me introduce myself.
-In addition to my work, I'm also involved at the PyCon JP Association
--->
 
 # Self-introduction
 
@@ -69,41 +65,50 @@ In addition to my work, I'm also involved at the PyCon JP Association
 </div>
 
 <div>
-    <img src="/images/peacock0803sz.jpg" class="v-auto">
+  <img src="/images/peacock0803sz.jpg" class="v-auto">
 </div>
 </div>
+
+<!--
+If you have any questions or comments, please write here. I'd love to hear from you during the talk.
+
+Nice to meet you. Hello PyCon US 2022! let me introduce myself.
+-->
 
 ---
 
 - Company: [CMScom](https://cmscom.jp) (Full-time since 2020/06 ~)
     - Web application developer, Flask / Pyramid / Plone / FastAPI
 - Member of PloneJP (Plone User's Group in Japan)
-- Staff of PyCon JP (since 2020 - ), 2022: Vice Chair
+- Staff of PyCon JP (since 2020 - ), [2022](https://2022.pycon.jp): Vice Chair
 - Operating Member of [PyCon JP Association](https://www.pycon.jp)
     - Director of [PyCon JP TV](https://tv.pycon.jp)(YouTube live about PyCons and local events held once a month)
 - I have experience learning haskell and typescript.
 - Now, reading "[Types and Programming Languages](https://www.cis.upenn.edu/~bcpierce/tapl/)" (a.k.a. TaPL)
 
+<!--
+In addition to my work, I'm also involved at the PyCon JP Association
+-->
+
 ---
+
+# Today's topic
+
+<v-clicks>
+
+1. Why do I talk about typing?
+2. First step of typing, How to write basically **(I most want to say)**
+3. Generics, User-Defined types (Best practice included)
+4. Updates overview recently & Backward compatibility for 3.9 or before
+5. Overview of new features on 3.10
+
+</v-clicks>
 
 <!--
 this is today's topic.
 -->
 
-# Today's topic
-
-1. Why do I talk about typing?
-2. Introduction of typing, How to write basically **(I most want to say)**
-3. Generics, User-Defined types (Best practice included)
-4. Updates overview recently & Backward compatibility for 3.9 or before
-5. Overview of new features on 3.10
-
 ---
-
-<!--
-My motivation for talking is to get the word out in a coherent way.
-It's been five years (Python 3.5, at 2015) since typing appeared
--->
 
 # Why do I talk about typing?
 
@@ -112,6 +117,11 @@ It's been five years (Python 3.5, at 2015) since typing appeared
 - Several big PEPs were adopted and updated over the years
 - Even now, I think many people **don't know where to start**
     - Because there is little coherent information
+
+<!--
+My motivation for talking is to get the word out in a coherent way.
+It's been five years (Python 3.5, at 2015) since typing appeared
+-->
 
 ---
 
@@ -128,18 +138,14 @@ It's been five years (Python 3.5, at 2015) since typing appeared
 layout: section
 ---
 
+# First step of typing
+## How to write basically
+
 <!--
 OK, Let's take a look at how to actually start Typing!
 -->
 
-# Introduction of typing
-## How to write basically
-
 ---
-
-<!--
-First, let's look at what typing can do for you.
--->
 
 # What makes you happy?
 
@@ -147,7 +153,19 @@ First, let's look at what typing can do for you.
 - It gets angry when I try to give it the wrong one.
 - The completion will work when accessing the return value of a function using a dot.
 
+<!--
+First, let's look at what typing can do for you.
+-->
+
 ---
+
+## Without the type hint
+
+<img src="/images/1.png" class="h-30 my-5">
+
+We don't know the error...
+
+<img src="/images/2.png" class="h-20 my-5">
 
 <!--
 this is a minimal example.
@@ -155,43 +173,31 @@ we don't know the type of return value...
 if try to pass int to the function, it'll occur an error
 -->
 
-## Without the type hint
-
-<img src="/images/1.png" class="h-55 my-5">
-
-We don't know the error...
-
-<img src="/images/2.png" class="h-35 my-5">
-
 ---
-
-<!--
-How about this case? It looks like s is str, a return value is also str.
--->
 
 ## With the type hint
 
-<img src="/images/3.png" class="h-45 my-5">
+<img src="/images/3.png" class="h-30 my-5">
 
 and, the editor can tell the argument is wrong
 
 ## Editor tells a wrong argument
 
-<img src="/images/4.png" class="h-35 my-5">
-
----
+<img src="/images/4.png" class="h-25 my-5">
 
 <!--
-and more, there are advantages to code review.
-w/o type hint, reviewer, can't know the return type from reading the definition.
-As a result, many people may have had this experience.
+How about this case? It looks like s is str, a return value is also str.
 -->
+
+---
 
 # In a code review
 
 The reviewer can know variables or function returns types.
 
-## Without the type hint
+---
+
+## Without the type hint...
 
 Boss < What type does this function return?
 
@@ -208,11 +214,13 @@ def need_new_post():
     else: return post_id  # this is str
 ```
 
----
-
 <!--
-However, Type hint may make the review process more smooth.
+and more, there are advantages to code review.
+w/o type hint, reviewer, can't know the return type from reading the definition.
+As a result, many people may have had this experience.
 -->
+
+---
 
 ## With the type hint
 
@@ -229,9 +237,15 @@ def need_new_post() -> None | False | str:
     else: return post_id  # this is str
 ```
 
+<!--
+However, Type hint may make the review process more smooth.
+-->
+
 ---
 
 # Let's start with function definitions
+
+**Noting to difficult!** Just write type
 
 - After the arguments, write colon and type
 - Before the colon at the end of the function definition, write an arrow and type
@@ -239,10 +253,6 @@ def need_new_post() -> None | False | str:
 <img src="/images/3.png" class="h-40">
 
 ---
-
-<!--
-now, Let's take a look at the types that can be used in practice.
--->
 
 ## Using built-in types
 
@@ -252,10 +262,6 @@ now, Let's take a look at the types that can be used in practice.
 
 ## Escaping from type puzzles
 
-<!--
-If you want to escape from complex type puzzles, you can use any. this is the final resort.
--->
-
 - `Any` Can hold instances of any type.
 - It's better not to use it.
     - Import and use from `typing` when necessary.
@@ -264,6 +270,12 @@ If you want to escape from complex type puzzles, you can use any. this is the fi
 from typing import Any
 very_dangerous_last_resort: Any
 ```
+
+<!--
+now, Let's take a look at the types that can be used in practice.
+
+If you want to escape from complex type puzzles, you can use any. this is the final resort.
+-->
 
 ---
 
@@ -288,38 +300,28 @@ very_dangerous_last_resort: Any
 
 ---
 
-<!--
-because of the way of writing described before.
--->
-
 # (Deprecated since 3.9) import from typing module
 
-- For Generics, until 3.9, you had to write `from typing import ...`
-    - Such as `Dict`, `List` and `Tuple` etc...
-- From 3.9, it's deprecated.
+- For Generics, until Python 3.9, you had to write `from typing import ...`
+    - `Dict`, `List` and `Tuple` etc...
+- From 3.9, it's deprecated
 
 ```py
 from typing import Dict, List, Tuple, ...  # before 3.9
 def some_function() -> Tuple[List[int], Dict[str, bool]]: pass
 ```
 
-<div>
-Since 3.9, no more need these import statement!
-</div>
+## Since 3.9, no more need these import statement!
 
 ```py
 def some_function() -> tuple[list[int], dict[str, bool]]: pass
 ```
 
----
-
 <!--
-There are many types in collections.abc.
-Although it's unlikely that you will use these in a fine-grained way,
-It's better to choose a collection with as few methods as possible to increase portability.
-The following figure shows the relationship between collections.abc and a sequence of built-in types defined by method inclusion rather than implementation inheritance.
-It is a good idea to look at the methods used in your functions and choose the types on the left side of this diagram as much as possible.
+because of the way of writing described before.
 -->
+
+---
 
 # Using different types of collections
 
@@ -331,23 +333,21 @@ It is a good idea to look at the methods used in your functions and choose the t
 - It's a good idea to look at the methods used in your functions.
     - Choose the types on the left side of this diagram as much as possible.
 
----
-
 <!--
-The further to the left you go, the fewer methods it has. To the right, the more methods it has.
-For example, if you just want to loop over a sequence of arguments in a function, you can use collections.abc.Iterable.
-If you need random access, use Sequence.
-If you need to change the value, use a type with Mutable.
-
-Or, if you simply specify list as the argument type, you will not be able to pass set or dict.
-In particular, it is better not to set concrete types (list, tuple, dictionary, set) just because you are familiar with them.
-However, I think it is easier to understand using these concrete types, so you may want to first apply these concrete types.
-After you confirm that you can use fewer operators and methods, you may want to gradually move to the left side of the types.
+There are many types in collections.abc.<br>
+Although it's unlikely that you will use these in a fine-grained way,<br>
+It's better to choose a collection with as few methods as possible to increase portability.<br>
+The following figure shows the relationship between collections.abc and a sequence of built-in types defined by method inclusion rather than implementation inheritance.<br>
+It is a good idea to look at the methods used in your functions and choose the types on the left side of this diagram as much as possible.
 -->
 
-<div class="absolute top-5">
+---
 
 # Great method inheritance tree
+
+<div class="absolute top-20 left-5 grid grid-cols-[100%,0%] gap-2">
+
+<div>
 
 ```mermaid
 graph TD
@@ -371,15 +371,48 @@ VView[ValuesView] --> C[Colleciton]
 
 </div>
 
+<div class="absolute top-20 right-0">
+
+</div>
+
+</div>
+
+<style>
+.slidev-layout div {
+  @apply text-2xl
+}
+</style>
+
+<!--
+The further to the left you go, the fewer methods it has. To the right, the more methods it has.<br>
+For example, if you just want to loop over a sequence of arguments in a function, you can use collections.abc.Iterable. <br>
+If you need random access, use Sequence. <br>
+If you need to change the value, use a type with Mutable.
+
+Or, if you simply specify list as the argument type, you will not be able to pass set or dict.<br>
+In particular, it is better not to set concrete types (list, tuple, dictionary, set) just because you are familiar with them.<br>
+However, I think it is easier to understand using these concrete types, so you may want to first apply these concrete types.<br>
+After you confirm that you can use fewer operators and methods, you may want to gradually move to the left side of the types.<br>
+-->
+
 ---
 
 # The difference between tuple and others Sequences
 
+<div v-click>
+
 - Tuples are fixed up to the length information
     - Specify the type for the number of elements
         - Or you can mix types, such as `tuple[int, str, float]`.
+
+</div>
+
+<div v-click>
+
 - A sequence, such as a list, has the same constraint for all elements
     - Can be used regardless of the length of the sequence by setting only one.
+
+</div>
 
 ---
 layout: section
@@ -393,11 +426,9 @@ Next, there are few advanced types.
 
 ---
 
-<!--
-at first is union, merged type. top half code is an Example A function that accepts both integers and floats bottom one is Union objects can be tested for equality with other union objects.
--->
-
 # Union (Mager type)
+
+<div v-click>
 
 - `Union`: merged type, can be represented by `|` since 3.10
     - You've probably seen it on Haskell or TypeScript
@@ -407,6 +438,10 @@ def square(number: int | float) -> int | float:
     return number ** 2
 ```
 
+</div>
+
+<v-clicks at="2">
+
 Union objects can be tested for equality with other union objects.
 
 ```py {1|2|3|4}
@@ -415,6 +450,14 @@ int | str | int == int | str              # Redundant types are removed
 int | str == str | int                    # Order is ignored
 int | str == typing.Union[int, str]       # Compatible with typing.Union
 ```
+
+</v-clicks>
+
+<!--
+at first is union, merged type.<br>
+top half code is an Example A function that accepts both integers and<br>
+floats bottom one is Union objects can be tested for equality with other union objects.
+-->
 
 ---
 
@@ -451,7 +494,7 @@ def get_content() -> str | None:
 
 ---
 
-In this case
+## In this case...
 
 - It would be cleaner to raise a `raise RuntimeError`.
     - The cost of raising exceptions in Python is (relatively) low
@@ -461,10 +504,6 @@ In this case
     - Null-safe means a method that does not raise an exception when passed None.
 
 ---
-
-<!--
-It can be used when writing functions that take a function as an argument, such as decorator functions.
--->
 
 # Callable (callable object)
 
@@ -484,17 +523,17 @@ def validate(func: Callable) -> Callable[..., Callable]:
     return wrapper
 ```
 
----
-
 <!--
-A generic type is typically declared by inheriting from an instantiation of this class with one or more type variables.
+It can be used when writing functions that take a function as an argument, such as decorator functions.
 -->
+
+---
 
 # User-defined Generic types
 
 A generic type is typically declared by inheriting from an instantiation.
 
-Example: a generic mapping type
+## Example: a generic mapping type
 
 ```py {2|3|4}
 from typing import TypeVar, Generic
@@ -512,39 +551,19 @@ def lookup_name(mapping: Mapping[X, Y], key: X, default: Y) -> Y:
     except KeyError: return default
 ```
 
+<!--
+A generic type is typically declared by inheriting from an instantiation of this class with one or more type variables.
+-->
+
 ---
 layout: section
 ---
 
-# Updates Overview <br> & How to use new features in older versions
+# How to use new features in older versions
 
 ---
 
-<!--
-this is an updated overview recently.
--->
-
-# Recent Python updates
-
-<https://www.python.org/downloads/>
-
-| Ver. | Status   | Release | EoS     | Release PEP                                      | Main new feature          |
-| ---- | -------- | ------- | ------- | ------------------------------------------------ | ------------------------- |
-| 3.11 | beta 4   | 2021-10 | 2026-10 | [619](https://www.python.org/dev/peps/pep-0619/) | Pattern matching          |
-| 3.10 | bug fix  | 2021-10 | 2026-10 | [619](https://www.python.org/dev/peps/pep-0619/) | Pattern matching          |
-| 3.9  | bug fix  | 2020-10 | 2025-10 | [596](https://www.python.org/dev/peps/pep-0596/) | Union operators to dict   |
-| 3.8  | security | 2019-10 | 2024-10 | [569](https://www.python.org/dev/peps/pep-0569/) | `=` in f-string           |
-| 3.7  | Security | 2018-06 | 2023-06 | [537](https://www.python.org/dev/peps/pep-0537/) | Data classes              |
-| 3.6  | Security | 2016-12 | 2021-12 | [494](https://www.python.org/dev/peps/pep-0494/) | Literal string (f-string) |
-
----
-
-<!--
-Let's talk about dunder future, which has come up many times before.
-Modules and methods with two underscores at either end are pronounced dunder.
--->
-
-# What is the `__future__` module: (dunder future)?
+# What is the `__future__` module?
 
 - It exists for backward compatibility.
 - Using typing new feature in the older versions, write `from __future__ import annotations`
@@ -553,15 +572,56 @@ Modules and methods with two underscores at either end are pronounced dunder.
     - ex) `print_func`, `unicode_literals` etc ...
 - refs: [\_\_future\_\_](https://docs.python.org/3/library/__future__.html), [future statement](https://docs.python.org/3/reference/simple_stmts.html#future)
 
+<!--
+Let's talk about dunder future, which has come up many times before.
+Modules and methods with two underscores at either end are pronounced dunder.
+-->
+
+---
+layout: section
 ---
 
-next topic is new features in python3.10, will be released Nov. this year there is a difficult feature. I'm not sure I can explain it well, either.
-
-# New Features Related to Type Hints in 3.10
+# Updates Overview Recently
 
 ---
 
-# PEP 604: New Type Union Operator
+# Recent Python updates
+
+| Ver. | Status   | Release | EoS     | Schedule PEP                                         | Main new feature   |
+| ---- | -------- | ------- | ------- | ---------------------------------------------------- | ------------------ |
+| 3.11 | Alpha 7  | 2022-10 | 2027-10 | [PEP 619](https://www.python.org/dev/peps/pep-0619/) | Performance tuning |
+| 3.10 | Bugfix   | 2021-10 | 2026-10 | [PEP 619](https://www.python.org/dev/peps/pep-0619/) | Pattern Matching   |
+| 3.9  | Bugfix   | 2020-10 | 2025-10 | [PEP 596](https://www.python.org/dev/peps/pep-0596/) | Union Operators    |
+| 3.8  | Security | 2019-10 | 2024-10 | [PEP 569](https://www.python.org/dev/peps/pep-0569/) | `=` in f-string    |
+| 3.7  | Security | 2018-06 | 2023-06 | [PEP 537](https://www.python.org/dev/peps/pep-0537/) | dataclasses        |
+| 2.7  | EoL      | 2010-07 | 2020-01 | [PEP 373](https://www.python.org/dev/peps/pep-0373/) | Improving Decimals |
+
+<https://www.python.org/downloads/>
+
+<!--
+this is an updated overview recently.
+-->
+
+---
+
+# New Features on Type Hints in 3.10
+
+- [PEP 604](https://peps.python.org/pep-0604/): New Type Union Operator
+- [PEP 612](https://peps.python.org/pep-0612/): Parameter Specification Variables
+- [PEP 613](https://peps.python.org/pep-0613/): TypeAlias
+- [PEP 647](https://peps.python.org/pep-0647/): User-Defined Type Guards
+
+See Also: <https://docs.python.org/3/whatsnew/3.10.html#new-features-related-to-type-hints>
+
+<!--
+next topic is new features in python3.10, released Nov last year.<br>
+this year there is a difficult feature. <br>
+I'm not sure I can explain it well, either.
+-->
+
+---
+
+# [PEP 604](https://peps.python.org/pep-0604/): New Type Union Operator
 
 - The union above type can be used as an operator.
 - You can also use it when asking `isinstance()`.
@@ -571,19 +631,23 @@ next topic is new features in python3.10, will be released Nov. this year there 
 int | str == typing.Union[int, str]  # Compatible with typing.Union
 ```
 
+<!-- 
+You may have seen ever this style if you have experiences using typescript or other static typed lang.
+ -->
+
 ---
 
-# PEP 612: Parameter Specification Variables
+# [PEP 612](https://peps.python.org/pep-0612/): Parameter Specification Variables
 
 ## Motivation
 
-- Tring to write a generic decorator, it's difficult to write the type
-- Needed a way to represent a function that has the **same arguments as the specified function**
+Needed a way to represent a function that has the **same arguments as the specified function**
 
 ## Approach
 
 - Adding an argument type called `ParameterSpecification` solves the problem.
-- It can be used with `Callable` to behave like a generic callable object. (You can think of it as an argument version of `TypeVar`.)
+- It can be used with `Callable` to behave like a generic callable object.
+    - You can think of it as an argument version of `TypeVar`.
 
 ---
 
@@ -625,7 +689,7 @@ def foo(x: int, y: str) -> int: return x + 7
 
 ---
 
-# PEP 613: TypeAlias
+# [PEP 613](https://peps.python.org/pep-0613/): TypeAlias
 
 ## Motivation
 
@@ -654,32 +718,31 @@ x: TypeAlias = “MyClass”  # type alias
 
 ---
 
-# PEP 647: User-Defined Type Guards
+# [PEP 647](https://peps.python.org/pep-0647/): User-Defined Type Guards
 
 ## Motivation
 
 Type checker tools use a technique called type narrowing to determine the type of information.
+
 In this example, the `if` statement and `is None` are used to automatically narrow down the type.
 
 ```py {3|5}
 def func(val: Optional[str]):
     # "is None" type guard
-    if val is not None: # Type of val is narrowed to str
-        pass
-    else: # Type of val is narrowed to None
-        pass
+    if val is not None: pass # Type of val is narrowed to str
+    else: pass  # Type of val is narrowed to None
 ```
 
 ---
 
 However, that will not work as intended if the user function is used.
 
-```py
-  def is_str_list(val: List[object]) -> bool:
+```py{3|6}
+def is_str_list(val: List[object]) -> bool:
     """Determines whether all objects in the list are strings"""
     return all(isinstance(x, str) for x in val)
 
-  def func1(val: List[object]):
+def func1(val: List[object]):
     if is_str_list(val): print(" ".join(val))  # Error: invalid type
 ```
 
@@ -687,13 +750,6 @@ However, that will not work as intended if the user function is used.
 - By using user-defined type guards, it is easier to get support for type narrowing.
 
 ---
-
-<!--
-The type checker assumes that the first argument matches the type specified in TypeGuard, if the function returns True. In the above example, data that passes is_str_list() will be treated as List[str].
-
-Note that if this function returns False, type narrowing will not be performed.
-In the following example, if is_two_element_tuple(...) block, the type is narrowed to Tuple[str, str] as a result of type narrowing, while in the else block, the type remains unchanged.
--->
 
 ```py
 from typing import TypeGuard
@@ -703,7 +759,7 @@ def is_str_list(val: List[object]) -> TypeGuard[List[str]]:
 
 And, type narrowing works like this:
 
-```py
+```py{3|8,9}
 def is_two_element_tuple(
     val: Tuple[str, ...]
 ) -> TypeGuard[Tuple[str, str]]:
@@ -715,27 +771,110 @@ def func(val: OneOrTwoStrs):
     else: reveal_type(val)   # OneOrTwoStrs
 ```
 
+<!--
+The type checker assumes that the first argument matches the type specified in TypeGuard, if the function returns True. In the above example, data that passes is_str_list() will be treated as List[str].
+
+Note that if this function returns False, type narrowing will not be performed.
+In the following example, if is_two_element_tuple(...) block, the type is narrowed to Tuple[str, str] as a result of type narrowing, while in the else block, the type remains unchanged.
+-->
+
+---
+
+# New Feature on Type Hints in 3.11
+
+<br>
+
+## Python 3.11 is focused on performance tuning, <br> but there are also new features in Typing...
+
+<br>
+
+- [PEP 673](https://www.python.org/dev/peps/pep-0673): Self Type
+    - A way to annotate methods that return an instance of their class
+
+---
+
+# Motivation
+
+When we call set_scale on a subclass of Shape, the type checker still infers the return type to be `Shape`.
+
+```py{2|6|7,8}
+class Circle(Shape):
+    def set_radius(self, r: float) -> Circle:
+        self.radius = r
+        return self
+
+Circle().set_scale(0.5)  # *Shape*, not Circle
+Circle().set_scale(0.5).set_radius(2.7)  
+# => error: Shape has no attribute "set_radius"
+```
+
+---
+
+# Here is workaround, but it's unintuitive...
+
+```py {2,5|10|14}
+from typing import TypeVar
+TShape = TypeVar("TShape", bound="Shape")
+
+class Shape:
+    def set_scale(self: TShape, scale: float) -> TShape:
+        self.scale = scale
+        return self
+
+class Circle(Shape):
+    def set_radius(self, radius: float) -> Circle:
+        self.radius = radius
+        return self
+
+Circle().set_scale(0.5).set_radius(2.7)  # => Circle
+```
+
+---
+
+# `typing.Self` resolves that unintuitively
+
+There is no logner to use `typing.TypeVar`!
+
+```py {1|2,3|7,8|12}
+from typing import Self
+class Shape:
+    def set_scale(self, scale: float) -> Self:
+        self.scale = scale
+        return self
+
+class Circle(Shape):
+    def set_radius(self, radius: float) -> Self:
+        self.radius = radius
+        return self
+
+Circle().set_scale(0.5)  # => the type would be *Circle*
+```
+
 ---
 
 # Summary
 
-1. Introduction
-    1. Motivation, Let's start writing, Built-in types
-    2. Standard collection type hints starting with lowercase (3.9)
-2. Collections and Generics
-    1. Union, Optional, Callable, User-defined Generics
-3. Updates Overview & How to use new features in older versions
-4. Python 3.10 style type hinting
-    1. New Type Union Operator, Parameter Specific Variables, TypeAlias, User-Defined Type Guards
+1. Benefits for typing, starting with `def`, Built-in types
+2. Standard collection type hints starting with lowercase (since 3.9)
+3. Collections & Genrics: Union, Optional, Callable, User-defineds
+4. Updates Overview, Backwords Compatibility using `__future__`
+5. New features on Python 3.10 and 3.11
+    1. 3.10: New Type Union Operator, Parameter Specific Variables, TypeAlias, User-Defined Type Guards
+    2. 3.11: Self Type
+
+<!--
+First, I talked 
+-->
 
 ---
 
 # Pages I used for reference (Thanks)
 
-There are links that I referenced
+There are links that I referenced. Thank you!
 
 - <https://docs.python.org/3/library/typing.html>
 - <https://docs.python.org/3.10/whatsnew/3.10.html>
+- <https://docs.python.org/3.11/whatsnew/3.11.html>
 - <http://mypy-lang.org>
 - <https://future-architect.github.io/articles/20201223> (ja)
 - <https://qiita.com/tk0miya/items/931da13af292060356b9> (ja)
@@ -746,4 +885,6 @@ There are links that I referenced
 layout: fact
 ---
 
-# Thank you!
+# Thank you for listening!
+
+## Powered by [Slidev](https://sli.dev), using [theme-briks](https://github.com/slidevjs/themes/tree/main/packages/theme-bricks)

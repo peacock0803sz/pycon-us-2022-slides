@@ -3,73 +3,64 @@
   --slidev-theme-primary: #5d8392;
 }
 
-/* .slidev-layout.cover,
-.slidev-layout.intro {
-  @apply h-full grid;
-
-  h1 {
-    @apply text-6xl leading-20;
-  }
-
-  h1 + p {
-    @apply -mt-2 opacity-50 mb-4;
-  }
-
-  p + h2, ul + h2, table + h2 {
-    @apply mt-10;
-  }
-} */
-.slidev-layout.intro {
-  background-image: url('/images/intro.png')
+.slidev-layout h1 {
+  @apply text-6xl;
+  font-family: "Texta Alt Black";
 }
-
-.slidev-layout.intro h1 {
-  @apply text-left font-bold 
-  font: 'Texta';
-  letter-spacing: 0px;
-  opacity: 1;
+.slidev-layout h2 {
+  font-family: "Texta Alt Bold";
 }
-
-.slidev-layout.intro h2 {
-  @apply py-16 font-light text-3xl;
-  font: 'Texta';
-  letter-spacing: 0px;
-  opacity: 1;
+.slidev-layout.cover h1 {
+  @apply text-right text-7xl absolute top-10 right-10;
 }
-
-.slidev-layout.section {
-  background-image: url('/images/section.png')
-}
-.slidev-layout.section h1 {
-  @apply text-left font-bold;
-  font: normal normal bold Texta;
-  letter-spacing: 0px;
-  opacity: 1;
-}
-
-.slidev-layout.section h2 {
-  @apply text-left font-medium;
-  font: normal normal bold Texta;
-  letter-spacing: 0px;
-  opacity: 1;
-}
-
-.slidev-layout.default h1 {
-  @apply text-4xl;
-}
-.slidev-layout.default h2 {
-  @apply text-3xl py-1 my-1;
+.slidev-layout.cover h2 {
+  @apply absolute bottom-10 right-10;
 }
 .slidev-layout.default {
-  background-image: url('/images/default.png');
-  @apply text-2xl;
-  font: normal normal bold Texta;
-  letter-spacing: 0px;
+  @apply p-15 py-10 text-3xl;
+  font-family: "Texta Alt Medium";
+}
+.slidev-layout.default h1 {
+  font-family: "Texta Alt Heavy";
+  @apply text-5xl mb-0 pb-5;
+}
+.slidev-layout.default h2 {
+  font-family: "Texta Alt Heavy";
+  @apply text-4xl mb-0 pb-5 text-gray-700;
+}
+.slidev-layout.default p {
+  font-family: "Texta Alt Medium";
+  @apply my-0 py-2 leading-tight;
   opacity: 1;
 }
+.slidev-layout.default li {
+  @apply my-0 py-0 leading-tight;
+}
+.slidev-layout.default  strong {
+  font-family: "Texta Alt Black";
+}
+.slidev-layout table {
+  @apply mb-5;
+}
+.slidev-layout table > tbody > tr > td {
+  @apply px-1 py-2;
+}
+.slidev-layout table > thead > tr > th {
+  @apply text-2xl px-1 py-0;
+}
+.slidev-layout.default code {
+  @apply font-bold;
+  font-family: "JetBrains Mono";
+  font-size: 1.25rem;
+}
+.slidev-layout.default h1 > code {
+  @apply  text-4xl;
+  font-family: "JetBrains Mono Extrabold";
+}
 .slidev-layout.default pre > code {
+  font-variant-ligatures: none;
   @apply text-lg;
 }
-.slidev-layout.fact {
-  background-image: url('/images/intro.png')
+.slidev-layout.fact h2 {
+  @apply fixed left-25 bottom-10;
 }
