@@ -43,8 +43,8 @@ jobs:
       env:
         S3_REPOSITORY: s3://${{ env.S3_BUCKET }}
       run: |
-        mkdir -p ./dist/pycon-us-2022/
+        mkdir -p ./dist/
         yarn
-        yarn build --base /pycon-us-2022/
-        aws s3 sync ./dist $S3_REPOSITORY/pycon-us-2022
+        yarn build --base /pyconus2022/
+        aws s3 sync ./dist $S3_REPOSITORY/pyconus2022/
         aws cloudfront create-invalidation --distribution-id ${CF_DISTRIBUTION_ID} --paths "/pycon-us-2022"
