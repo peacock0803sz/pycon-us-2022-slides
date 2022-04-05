@@ -4,7 +4,6 @@ titleTemplate: '%s'
 lineNumbers: true
 theme: bricks
 aspectRatio: 16/9
-download: true
 favicon: https://peacock0803sz.com/favicon.ico
 defaults:
   layout: default
