@@ -31,7 +31,7 @@ layout: intro
 
 <div class="text-2xl">
 
-Slides: [slides.peacock0803sz.com/uspycon2022/index.html](https://slides.peacock0803sz.com/uspycon2022/index.html)
+Slides: [slides.peacock0803sz.com/pyconus/index.html](https://slides.peacock0803sz.com/pyconus/index.html)
 
 Expected: Google Chrome
 
