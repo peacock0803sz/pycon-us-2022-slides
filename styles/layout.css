@@ -4,63 +4,96 @@
 }
 
 .slidev-layout h1 {
-  @apply text-6xl;
-  font-family: "Texta Alt Black";
+  font-family: "Texta Alt Black", ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: bolder;
 }
 .slidev-layout h2 {
-  font-family: "Texta Alt Bold";
+  font-family: "Texta Alt Bold", ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-weight: bold;
 }
-.slidev-layout.cover h1 {
-  @apply text-right text-7xl absolute top-10 right-10;
-}
-.slidev-layout.cover h2 {
-  @apply absolute bottom-10 right-10;
-}
-.slidev-layout.default {
-  @apply p-15 py-10 text-3xl;
-  font-family: "Texta Alt Medium";
-}
-.slidev-layout.default h1 {
-  font-family: "Texta Alt Heavy";
-  @apply text-5xl mb-0 pb-5;
-}
-.slidev-layout.default h2 {
-  font-family: "Texta Alt Heavy";
-  @apply text-4xl mb-0 pb-5 text-gray-700;
-}
-.slidev-layout.default p {
-  font-family: "Texta Alt Medium";
-  @apply my-0 py-2 leading-tight;
+.slidev-layout h1 + p, div {
+  font-family: "Texta Alt Medium", ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji" !important;
+  font-weight: normal;
   opacity: 1;
 }
+.slidev-layout code {
+  font-variant-ligatures: none;
+  font-family: "JetBrains Mono", "Noto Sans Mono", "Monaco";
+  font-weight: bold;
+}
+
+.slidev-layout.cover h1 {
+  @apply text-right text-6xl absolute top-20 right-10;
+}
+.slidev-layout.cover h2 {
+  @apply text-right text-4xl absolute bottom-10 right-10;
+}
+
+.slidev-layout.intro h1 {
+  font-size: 6rem;
+}
+.slidev-layout.intro h2 {
+  font-size: 3rem;
+  line-height: 3rem;
+}
+
+.slidev-layout.section-1 {
+  @apply grid-cols-[75%,25%];
+}
+.slidev-layout.section-1 div {
+  @apply absolute bottom-40 px-2 pr-50;
+}
+.slidev-layout.section-1 h1 {
+  @apply text-6xl;
+}
+.slidev-layout.section-1 h2 {
+  @apply text-4xl;
+}
+.slidev-layout.default {
+  @apply px-25 py-15 leading-normal;
+  font-size: 1.75rem;
+}
+.slidev-layout.default h1 {
+  @apply mb-0 pb-2;
+  font-size: 2.5rem;
+}
+.slidev-layout.default h2 {
+  @apply mb-0 pb-2 text-gray-750;
+  font-size: 2rem;
+}
+.slidev-layout.default p, div {
+  @apply my-0 py-1 leading-normal;
+}
 .slidev-layout.default li {
-  @apply my-0 py-0 leading-tight;
+  @apply my-0 py-0 leading-normal;
 }
-.slidev-layout.default  strong {
-  font-family: "Texta Alt Black";
+.slidev-layout strong {
+  font-weight: bold;
 }
-.slidev-layout table {
+.slidev-layout.default table {
   @apply mb-5;
 }
-.slidev-layout table > tbody > tr > td {
-  @apply px-1 py-2;
+.slidev-layout.default table > tbody > tr > td {
+  @apply text-2xl px-1 py-1;
 }
-.slidev-layout table > thead > tr > th {
-  @apply text-2xl px-1 py-0;
+.slidev-layout.default table > thead > tr > th {
+  @apply text-xl px-1 py-0;
 }
 .slidev-layout.default code {
-  @apply font-bold;
-  font-family: "JetBrains Mono";
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+.slidev-layout.default span > code {
   font-size: 1.25rem;
 }
 .slidev-layout.default h1 > code {
-  @apply  text-4xl;
-  font-family: "JetBrains Mono Extrabold";
+  font-size: 1.8rem;;
 }
 .slidev-layout.default pre > code {
-  font-variant-ligatures: none;
-  @apply text-lg;
+  font-size: 1.2rem;
 }
+
 .slidev-layout.fact h2 {
-  @apply fixed left-25 bottom-10;
+  @apply text-2xl fixed left-25 bottom-10;
+  opacity: 1;
 }

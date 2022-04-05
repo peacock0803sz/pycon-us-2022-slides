@@ -4,18 +4,16 @@ titleTemplate: '%s'
 lineNumbers: true
 theme: bricks
 aspectRatio: 16/9
-canvasWidth: 960
+download: true
 favicon: https://peacock0803sz.com/favicon.ico
 defaults:
   layout: default
 layout: cover
-fonts:
-  sans: Texta Alt
 ---
 
-# Getting Started <br> with Statically Typed Programming in Python 3.10
+# Getting Started <br> with Statically Typed Programming <br> in Python 3.10
 
-## Peacock (Yoichi Takai), at PyCon US 2022 (2022/05/01)
+## Peacock (Yoichi Takai), <br> at PyCon US 2022 (2022/05/01)
 
 <!--
 Hi, let's start. my talk title is ...
@@ -27,22 +25,31 @@ layout: intro
 
 # Prolog
 
-## Self-introduction, Table of contents
+## Self-introduction, <br> Table of contents
 
 ---
 
+<div class="text-2xl">
+
+Slides: [slides.peacock0803sz.com/uspycon2022/index.html](https://slides.peacock0803sz.com/uspycon2022/index.html)
+
+Expected: Google Chrome
+
+</div>
+
 <div class="grid grid-cols-[75%,25%] gap-2">
 
-<div>
+<div class="text-4xl pt-10">
 
-Slides: <https://slides.peacock0803sz.com/us-pycon-2022/>
-<Tweet id="1489392519813107713" />
+Feel free to Take pictures <twemoji-camera /> <br> or Screenshots and Tweet <twemoji-baby-chick />
+
+Hashtag: #pyconus2022
 
 </div>
 
-<div>
-  <img src="/images/qrcode.png" class="v-auto">
-</div>
+<div><img src="/images/qrcode.png" class="v-auto"></div>
+
+<div class="text-5xl absolute bottom-25 right-25">^ Slides ^</div>
 
 </div>
 
@@ -50,7 +57,7 @@ Slides: <https://slides.peacock0803sz.com/us-pycon-2022/>
 
 # Self-introduction
 
-<div class="grid grid-cols-[70%,30%] gap-2">
+<div class="grid grid-cols-[80%,20%] gap-2">
 
 <div>
 
@@ -58,9 +65,10 @@ Slides: <https://slides.peacock0803sz.com/us-pycon-2022/>
     - [Twitter](https://twitter.com/peacock0803sz/) / [GitHub](https://github.com/peacock0803sz/) / [Facebook](https://www.facebook.com/peacock0803sz): `peacock0803sz`
     - **Please call me Peacock**
 - Favourites
-    - Playing the Clarinet
+    - Playing the Clarinet <twemoji-musical-note />
     - Listening Music (Most is classical)
-    - Skiing, Gadgets...
+    - Skiing <twemoji-skier /> , Gadgets...
+- 21-years old, This is my first trip abroad <twemoji-airplane />
 
 </div>
 
@@ -77,14 +85,23 @@ Nice to meet you. Hello PyCon US 2022! let me introduce myself.
 
 ---
 
+# My Works and community
+
 - Company: [CMScom](https://cmscom.jp) (Full-time since 2020/06 ~)
-    - Web application developer, Flask / Pyramid / Plone / FastAPI
+    - Web application developer, Flask / Pyramid / Plone etc..
 - Member of PloneJP (Plone User's Group in Japan)
+- Experience learning haskell and typescript
+- Now, reading "[Types and Programming Languages](https://www.cis.upenn.edu/~bcpierce/tapl/)"
+    - As known as "TaPL"
+
+---
+
+## My Activities Related to PyCon JP
+
 - Staff of PyCon JP (since 2020 - ), [2022](https://2022.pycon.jp): Vice Chair
 - Operating Member of [PyCon JP Association](https://www.pycon.jp)
-    - Director of [PyCon JP TV](https://tv.pycon.jp)(YouTube live about PyCons and local events held once a month)
-- I have experience learning haskell and typescript.
-- Now, reading "[Types and Programming Languages](https://www.cis.upenn.edu/~bcpierce/tapl/)" (a.k.a. TaPL)
+    - Director of [PyCon JP TV](https://tv.pycon.jp) 
+    - It's the YouTube live about PyCons and local events held once a month
 
 <!--
 In addition to my work, I'm also involved at the PyCon JP Association
@@ -97,7 +114,8 @@ In addition to my work, I'm also involved at the PyCon JP Association
 <v-clicks>
 
 1. Why do I talk about typing?
-2. First step of typing, How to write basically **(I most want to say)**
+2. First step of typing, How to write basically 
+    - That is what **I most want to say**
 3. Generics, User-Defined types (Best practice included)
 4. Updates overview recently & Backward compatibility for 3.9 or before
 5. Overview of new features on 3.10
@@ -112,9 +130,9 @@ this is today's topic.
 
 # Why do I talk about typing?
 
-- It's been five years since typing appeared
+- It's been 7 years since typing appeared
     - In Python 3.5, at 2015
-- Several big PEPs were adopted and updated over the years
+- Many big PEPs were adopted and updated over the years
 - Even now, I think many people **don't know where to start**
     - Because there is little coherent information
 
@@ -139,6 +157,7 @@ layout: section
 ---
 
 # First step of typing
+
 ## How to write basically
 
 <!--
@@ -149,8 +168,8 @@ OK, Let's take a look at how to actually start Typing!
 
 # What makes you happy?
 
-- It knows the type when you reference it in the editor.
-- It gets angry when I try to give it the wrong one.
+- It knows the type when you reference it in the editor
+- It gets angry when I try to give it the wrong one
 - The completion will work when accessing the return value of a function using a dot.
 
 <!--
@@ -161,11 +180,11 @@ First, let's look at what typing can do for you.
 
 ## Without the type hint
 
-<img src="/images/1.png" class="h-30 my-5">
+<img src="/images/1.png" class="h-35 mt-1 mb-10">
 
 We don't know the error...
 
-<img src="/images/2.png" class="h-20 my-5">
+<img src="/images/2.png" class="h-25 my-1">
 
 <!--
 this is a minimal example.
@@ -177,13 +196,13 @@ if try to pass int to the function, it'll occur an error
 
 ## With the type hint
 
-<img src="/images/3.png" class="h-30 my-5">
+<img src="/images/3.png" class="h-30 my-1">
 
 and, the editor can tell the argument is wrong
 
 ## Editor tells a wrong argument
 
-<img src="/images/4.png" class="h-25 my-5">
+<img src="/images/4.png" class="h-25 my-1">
 
 <!--
 How about this case? It looks like s is str, a return value is also str.
@@ -260,6 +279,8 @@ However, Type hint may make the review process more smooth.
     - you don't need to do anything to use them.
 - `None`: used for functions that return nothing.
 
+---
+
 ## Escaping from type puzzles
 
 - `Any` Can hold instances of any type.
@@ -285,36 +306,37 @@ If you want to escape from complex type puzzles, you can use any. this is the fi
     - Collections can be written with `[]` for the type inside.
         - 3.9 and later only
         - 3.7, 3.8 write `from __future__ import annotaions` (see below)
-        - 3.6: import annotations starting with uppercase letters from `typing` (next section)
     - ref: [official documentation](https://docs.python.org/3.9/whatsnew/3.9.html#type-hinting-generics-in-standard-collections)
+- Until 3.8, it was from `typing`, but now it's depreciated.
 
 ---
 
-- Until 3.8, it was from `typing`, but now it's depreciated.
 - For `__builtins__` start with lowercase without doing anything.
     - Such as `list`, `tuple`, and `dict` etc...
-- For `collections` (ex: deque, defaultdict, ...), import modules start with `collections`
-- iterable, callable, and other protocol-related items import modules start with `collections.abc`.
-- regular expressions from `re`.
-- Context-related items are available in `contextlib`.
+- Available modules in standard library...
+    - `collections`: (ex: deque, defaultdict)
+    - `collections.abc`: `Iterable`, `Callable`, or other protocol-related
+    - `re`: Regular expressions 
+    - `contextlib`: Context-related items
 
 ---
 
-# (Deprecated since 3.9) import from typing module
+# import from typing module
 
-- For Generics, until Python 3.9, you had to write `from typing import ...`
-    - `Dict`, `List` and `Tuple` etc...
-- From 3.9, it's deprecated
+**Deprecated since Python 3.9**
 
-```py
+- For Generics (such as `Dict`, `List`...,) until Python 3.9, you had to write `from typing import ...`
+    - From 3.9, it's **deprecated**!
+
+```py{1}
 from typing import Dict, List, Tuple, ...  # before 3.9
-def some_function() -> Tuple[List[int], Dict[str, bool]]: pass
+def some_function() -> Tuple[List[int], Dict]: pass
 ```
 
-## Since 3.9, no more need these import statement!
+Since Python 3.9, no more need these import statement!
 
 ```py
-def some_function() -> tuple[list[int], dict[str, bool]]: pass
+def some_function() -> tuple[list[int], dict]: pass
 ```
 
 <!--
@@ -323,29 +345,32 @@ because of the way of writing described before.
 
 ---
 
-# Using different types of collections
+# Using types from collections.abc differently
 
 - There are many types in `collections.abc`.
 - It's better to use a collection with a few methods to increase portability.
-- The following figure shows the relationship.
-    - The further to the left you go, the fewer methods it has.
-    - To the right, the more methods it has.
 - It's a good idea to look at the methods used in your functions.
-    - Choose the types on the left side of this diagram as much as possible.
+    - Choose the types on the top side of the figure as much as possible.
+
+The figure in next page shows the relationship...
 
 <!--
-There are many types in collections.abc.<br>
-Although it's unlikely that you will use these in a fine-grained way,<br>
-It's better to choose a collection with as few methods as possible to increase portability.<br>
-The following figure shows the relationship between collections.abc and a sequence of built-in types defined by method inclusion rather than implementation inheritance.<br>
-It is a good idea to look at the methods used in your functions and choose the types on the left side of this diagram as much as possible.
+There are many types in collections.abc.
+
+Although it's unlikely that you will use these in a fine-grained way,
+
+It's better to choose a collection with as few methods as possible to increase portability.
+
+The following figure shows the relationship between collections.abc and a sequence of built-in types defined by method inclusion rather than implementation inheritance.
+
+It is a good idea to look at the methods used in your functions and choose the types on the top side of this diagram as much as possible.
 -->
 
 ---
 
 # Great method inheritance tree
 
-<div class="absolute top-20 left-5 grid grid-cols-[100%,0%] gap-2">
+<div class="absolute inset-15">
 
 <div>
 
@@ -371,7 +396,7 @@ VView[ValuesView] --> C[Colleciton]
 
 </div>
 
-<div class="absolute top-20 right-0">
+<div>
 
 </div>
 
@@ -379,12 +404,12 @@ VView[ValuesView] --> C[Colleciton]
 
 <style>
 .slidev-layout div {
-  @apply text-2xl
+  @apply text-3xl
 }
 </style>
 
 <!--
-The further to the left you go, the fewer methods it has. To the right, the more methods it has.<br>
+The further to the left you go, the fewer methods it has. To the bottom the more methods it has.<br>
 For example, if you just want to loop over a sequence of arguments in a function, you can use collections.abc.Iterable. <br>
 If you need random access, use Sequence. <br>
 If you need to change the value, use a type with Mutable.
@@ -392,7 +417,7 @@ If you need to change the value, use a type with Mutable.
 Or, if you simply specify list as the argument type, you will not be able to pass set or dict.<br>
 In particular, it is better not to set concrete types (list, tuple, dictionary, set) just because you are familiar with them.<br>
 However, I think it is easier to understand using these concrete types, so you may want to first apply these concrete types.<br>
-After you confirm that you can use fewer operators and methods, you may want to gradually move to the left side of the types.<br>
+After you confirm that you can use fewer operators and methods, you may want to gradually move to the top side of the types.<br>
 -->
 
 ---
@@ -418,7 +443,7 @@ After you confirm that you can use fewer operators and methods, you may want to 
 layout: section
 ---
 
-# A little more advanced: Generics type
+# Advanced: <br> Generic types
 
 <!--
 Next, there are few advanced types.
@@ -428,7 +453,7 @@ Next, there are few advanced types.
 
 # Union (Mager type)
 
-<div v-click>
+<v-clicks at=1>
 
 - `Union`: merged type, can be represented by `|` since 3.10
     - You've probably seen it on Haskell or TypeScript
@@ -438,17 +463,21 @@ def square(number: int | float) -> int | float:
     return number ** 2
 ```
 
-</div>
+</v-clicks>
 
 <v-clicks at="2">
 
 Union objects can be tested for equality with other union objects.
 
-```py {1|2|3|4}
-(int | str) | float == int | str | float  # Nested unions are flattened
-int | str | int == int | str              # Redundant types are removed
-int | str == str | int                    # Order is ignored
-int | str == typing.Union[int, str]       # Compatible with typing.Union
+```py {1,2|3,4|5,6|7,8}
+# Nested unions are flattened
+(int | str) | float == int | str | float
+# Redundant types are removed
+int | str | int == int | str
+# Order is ignored
+int | str == str | int
+# Compatible with typing.Union
+int | str == typing.Union[int, str]
 ```
 
 </v-clicks>
@@ -469,6 +498,7 @@ floats bottom one is Union objects can be tested for equality with other union o
 
 ```py {2|3-}
 from typing import Optional
+
 age: Optional[int]
 age = 17
 age = None # This is also valid
@@ -476,15 +506,14 @@ age = None # This is also valid
 
 ---
 
-# Avoid using Optional as much as possible
+# Avoid Optional as much as possible
 
-- Optional is useful but causes code bloat.
-
-```py {2|3,4|5}
+```py {2|3-5|6}
 def get_content() -> str | None:
     r = request.get("https://example.com")
-    if r.status_code != 200: # This is the guard (early return)
-        logging.warning("HTTP response is %d!", r.status_code)
+    if r.status_code != 200:
+        # Guard section (early return)
+        logging.warning("Response: %d", r.status_code)
         return None
     return r.text
 ```
@@ -531,22 +560,20 @@ It can be used when writing functions that take a function as an argument, such 
 
 # User-defined Generic types
 
-A generic type is typically declared by inheriting from an instantiation.
+Example: a generic mapping type
 
-## Example: a generic mapping type
-
-```py {2|3|4}
+```py {2|4|5|7|9-11|12|13}
 from typing import TypeVar, Generic
 KT, VT = TypeVar("KT"), TypeVar("VT")
+
 class Mapping(Generic[KT, VT]):
     def __getitem__(self, key: KT) -> VT: pass
-```
 
-This class can then be used as:
-
-```py {1|2|3|4}
 X, Y = TypeVar("X"), TypeVar("Y")
-def lookup_name(mapping: Mapping[X, Y], key: X, default: Y) -> Y:
+
+def lookup_name(  # Using Mapping
+    mapping: Mapping[X, Y], key: X, default: Y
+) -> Y:
     try: return mapping[key]
     except KeyError: return default
 ```
@@ -587,7 +614,7 @@ layout: section
 
 # Recent Python updates
 
-| Ver. | Status   | Release | EoS     | Schedule PEP                                         | Main new feature   |
+| Ver. | Status   | Release | EoS     | Schedule                                             | Main new feature   |
 | ---- | -------- | ------- | ------- | ---------------------------------------------------- | ------------------ |
 | 3.11 | Alpha 7  | 2022-10 | 2027-10 | [PEP 619](https://www.python.org/dev/peps/pep-0619/) | Performance tuning |
 | 3.10 | Bugfix   | 2021-10 | 2026-10 | [PEP 619](https://www.python.org/dev/peps/pep-0619/) | Pattern Matching   |
@@ -621,14 +648,15 @@ I'm not sure I can explain it well, either.
 
 ---
 
-# [PEP 604](https://peps.python.org/pep-0604/): New Type Union Operator
+# [PEP 604](https://peps.python.org/pep-0604/): New Type Union Operator `|`
 
 - The union above type can be used as an operator.
 - You can also use it when asking `isinstance()`.
 - More intuitive since TypeScipt and others use this notation.
 
 ```py
-int | str == typing.Union[int, str]  # Compatible with typing.Union
+int | str == typing.Union[int, str]
+# Compatible with typing.Union
 ```
 
 <!-- 
@@ -642,6 +670,31 @@ You may have seen ever this style if you have experiences using typescript or ot
 ## Motivation
 
 Needed a way to represent a function that has the **same arguments as the specified function**
+
+```py {}
+from typing import Callable, TypeVar
+R = TypeVar("R")
+
+def add_logging(
+    f: Callable[..., R]
+) -> Callable[..., R]:
+    def inner(*args: object, **kwargs: object) -> R:
+        log_to_database()
+        return f(*args, **kwargs)
+    return inner
+
+```
+
+---
+
+```py {}
+@add_logging
+def takes_int_str(x: int, y: str) -> int:
+    return x + 7
+
+await takes_int_str(1, "A")
+await takes_int_str("B", 2) # fails at runtime
+```
 
 ## Approach
 
@@ -703,15 +756,18 @@ def foo(x: int, y: str) -> int: return x + 7
 ## Approach
 
 - Add a new `typing.TypeAlias`
-    - Write a variable of type alias type like `T: TypeAlias = int`
-- Variables defined at the global level are considered type aliases.
-- Using ForwardReference, you can write `T: TypeAlias = "int"`.
+    - You can write like this `T: TypeAlias = int`
+- global-level defined variables are considered type aliases
+- You can write like: `T: TypeAlias = "int"`
+    - Using ForwardReference
 
-```py {1,2|3,4|5,6}
+```py {1,2|4,5|7,8}
 x = 1  # untyped global expression
 x: int = 1  # typed global expression
+
 x = int  # untyped global expression
 x: Type[int] = int  # typed global expression
+
 x: TypeAlias = int  # type alias
 x: TypeAlias = “MyClass”  # type alias
 ```
@@ -722,14 +778,14 @@ x: TypeAlias = “MyClass”  # type alias
 
 ## Motivation
 
-Type checker tools use a technique called type narrowing to determine the type of information.
+- Type checker tools use a technique called type narrowing to determine the type of information.
+- In this example, the `if` statement and `is None` are used to automatically narrow down the type.
 
-In this example, the `if` statement and `is None` are used to automatically narrow down the type.
-
-```py {3|5}
+```py {3,4|5}
 def func(val: Optional[str]):
     # "is None" type guard
-    if val is not None: pass # Type of val is narrowed to str
+    if val is not None: 
+        pass # Type of val is narrowed to str
     else: pass  # Type of val is narrowed to None
 ```
 
@@ -739,11 +795,12 @@ However, that will not work as intended if the user function is used.
 
 ```py{3|6}
 def is_str_list(val: List[object]) -> bool:
-    """Determines whether all objects in the list are strings"""
+    """Determines whether all objects in the list are str"""
     return all(isinstance(x, str) for x in val)
 
 def func1(val: List[object]):
-    if is_str_list(val): print(" ".join(val))  # Error: invalid type
+    if is_str_list(val): print(" ".join(val))
+# => Error: invalid type
 ```
 
 - `TypeGuard` allows you to define user-defined type guards via the new typing.
@@ -753,13 +810,15 @@ def func1(val: List[object]):
 
 ```py
 from typing import TypeGuard
+
+# It's vaild!
 def is_str_list(val: List[object]) -> TypeGuard[List[str]]:
-    return all(isinstance(x, str) for x in val)  # this is vaild!
+    return all(isinstance(x, str) for x in val)  
 ```
 
 And, type narrowing works like this:
 
-```py{3|8,9}
+```py{3|8,9|10}
 def is_two_element_tuple(
     val: Tuple[str, ...]
 ) -> TypeGuard[Tuple[str, str]]:
@@ -767,7 +826,8 @@ def is_two_element_tuple(
 
 OneOrTwoStrs = Union[Tuple[str], Tuple[str, str]]
 def func(val: OneOrTwoStrs):
-    if is_two_element_tuple(val): reveal_type(val)  # Tuple[str, str]
+    if is_two_element_tuple(val):
+        reveal_type(val)  # Tuple[str, str]
     else: reveal_type(val)   # OneOrTwoStrs
 ```
 
@@ -782,14 +842,11 @@ In the following example, if is_two_element_tuple(...) block, the type is narrow
 
 # New Feature on Type Hints in 3.11
 
-<br>
-
-## Python 3.11 is focused on performance tuning, <br> but there are also new features in Typing...
+Python 3.11 is focused on performance tuning, <br> but there are also new features in Typing...
 
 <br>
 
-- [PEP 673](https://www.python.org/dev/peps/pep-0673): Self Type
-    - A way to annotate methods that return an instance of their class
+[PEP 673](https://www.python.org/dev/peps/pep-0673): Self Type, It's a way to annotate methods that return an instance of their class
 
 ---
 
@@ -886,5 +943,6 @@ layout: fact
 ---
 
 # Thank you for listening!
+
 
 ## Powered by [Slidev](https://sli.dev), using [theme-briks](https://github.com/slidevjs/themes/tree/main/packages/theme-bricks)
