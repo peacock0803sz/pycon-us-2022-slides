@@ -71,9 +71,7 @@ Hashtag: #pyconus2022
 
 </div>
 
-<div>
-  <img src="/images/peacock0803sz.jpg" class="v-auto">
-</div>
+<div><img src="/images/peacock0803sz.jpg" class="v-auto"></div>
 </div>
 
 <!--
@@ -209,13 +207,7 @@ How about this case? It looks like s is str, a return value is also str.
 
 ---
 
-# In a code review
-
-The reviewer can know variables or function returns types.
-
----
-
-## Without the type hint...
+# In a code review, without the type hint...
 
 Boss < What type does this function return?
 
@@ -240,7 +232,7 @@ As a result, many people may have had this experience.
 
 ---
 
-## With the type hint
+# With the type hint
 
 Boss < It looks like this function may return 3 types... Isn't that too much?
 
@@ -248,7 +240,7 @@ You < I see. That could be a bad design. Let me fix it.
 
 Boss < Sure, please.
 
-```py {1|2|3|4}
+```py {1}
 def need_new_post() -> None | False | str:
     if ...: retrun None
     elif ...: retrun False
@@ -268,7 +260,7 @@ However, Type hint may make the review process more smooth.
 - After the arguments, write colon and type
 - Before the colon at the end of the function definition, write an arrow and type
 
-<img src="/images/3.png" class="h-40">
+<img src="/images/3.png" class="h-40 mt-5">
 
 ---
 
@@ -280,10 +272,10 @@ However, Type hint may make the review process more smooth.
 
 ---
 
-## Escaping from type puzzles
+# Escaping from type puzzles
 
 - `Any` Can hold instances of any type.
-- It's better not to use it.
+- **It's better not to use it**
     - Import and use from `typing` when necessary.
 
 ```py
@@ -658,6 +650,8 @@ int | str == typing.Union[int, str]
 # Compatible with typing.Union
 ```
 
+- `Optional[T]` can also be written as `T | None` using this.
+
 <!-- 
 You may have seen ever this style if you have experiences using typescript or other static typed lang.
  -->
@@ -911,9 +905,9 @@ Circle().set_scale(0.5)  # => the type would be *Circle*
 # Summary
 
 1. Benefits for typing, starting with `def`, Built-in types
-2. Standard collection type hints starting with lowercase (since 3.9)
-3. Collections & Genrics: Union, Optional, Callable, User-defineds
-4. Updates Overview, Backwords Compatibility using `__future__`
+2. Standard collection starting with lowercase (since 3.9)
+3. Collections, Union, Optional, Callable, User-defined Generics
+4. Updates Overview, Backwords Compatibility with `__future__`
 5. New features on Python 3.10 and 3.11
     1. 3.10: New Type Union Operator, Parameter Specific Variables, TypeAlias, User-Defined Type Guards
     2. 3.11: Self Type
@@ -941,7 +935,8 @@ There are links that I referenced. Thank you!
 layout: fact
 ---
 
-# Thank you for listening!
+# Thank you
+## See you again next time in Japan!
 
 
-## Powered by [Slidev](https://sli.dev), using [theme-briks](https://github.com/slidevjs/themes/tree/main/packages/theme-bricks)
+### Powered by [Slidev](https://sli.dev), using [theme-briks](https://github.com/slidevjs/themes/tree/main/packages/theme-bricks)

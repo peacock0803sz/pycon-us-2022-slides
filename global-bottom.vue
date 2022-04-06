@@ -2,7 +2,8 @@
   <footer
     v-if="
       $slidev.nav.currentLayout !== 'cover' &&
-      $slidev.nav.currentLayout !== 'intro'
+      $slidev.nav.currentLayout !== 'intro' &&
+      $slidev.nav.currentLayout !== 'fact'
     "
     class="
       absolute
