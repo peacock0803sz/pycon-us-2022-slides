@@ -907,7 +907,7 @@ Circle().set_scale(0.5)  # => the type would be *Circle*
 1. Benefits for typing, starting with `def`, Built-in types
 2. Standard collection starting with lowercase (since 3.9)
 3. Collections, Union, Optional, Callable, User-defined Generics
-4. Updates Overview, Backwords Compatibility with `__future__`
+4. Updates Overview, using `__future__` for compatibility
 5. New features on Python 3.10 and 3.11
     1. 3.10: New Type Union Operator, Parameter Specific Variables, TypeAlias, User-Defined Type Guards
     2. 3.11: Self Type
