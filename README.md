@@ -1,11 +1,4 @@
-# Welcome to [Slidev](https://github.com/slidevjs/slidev)!
+# PyCon US 2022 Slides
 
-To start the slide show:
-
-- `npm install`
-- `npm run dev`
-- visit http://localhost:3030
-
-Edit the [slides.md](./slides.md) to see the changes.
-
-Learn more about Slidev on [documentations](https://sli.dev/).
+Online Slides: <https://slides.peacock0803sz.com/pyconus2022/index.html>
+Talk description: <https://us.pycon.org/2022/schedule/presentation/23/>
