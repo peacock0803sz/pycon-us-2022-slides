@@ -42,7 +42,7 @@ Expected: Google Chrome
 
 Feel free to Take pictures <twemoji-camera /> <br> or Screenshots and Tweet <twemoji-baby-chick />
 
-Hashtag: #pyconus2022
+Hashtag: **`#pyconus2022`**
 
 </div>
 
@@ -52,18 +52,25 @@ Hashtag: #pyconus2022
 
 </div>
 
+<!--
+Feel free to take pictures screenshots and tweet.
+
+The hashtag is `pyconus2022`
+-->
+
 ---
 
 # Self-introduction
 
-<div class="grid grid-cols-[80%,20%] gap-2">
+<div class="grid grid-cols-[75%,25%] gap-2">
 
 <div>
 
 - Name: Peacock / Yoichi Takai
-    - [Twitter](https://twitter.com/peacock0803sz/) / [GitHub](https://github.com/peacock0803sz/) / [Facebook](https://www.facebook.com/peacock0803sz): `peacock0803sz`
+    - Social media IDs: `peacock0803sz`
+        - [Twitter](https://twitter.com/peacock0803sz/), [GitHub](https://github.com/peacock0803sz/), [Facebook](https://www.facebook.com/peacock0803sz)...
     - **Please call me Peacock**
-- Favourites
+- Hobbies & Favourites
     - Playing the Clarinet <twemoji-musical-note />
     - Listening Music (Most is classical)
     - Skiing <twemoji-skier /> , Gadgets...
@@ -71,12 +78,10 @@ Hashtag: #pyconus2022
 
 </div>
 
-<div><img src="/images/peacock0803sz.jpg" class="v-auto"></div>
+<div class="ml-2"><img src="/images/peacock0803sz.jpg" class="v-auto"></div>
 </div>
 
 <!--
-If you have any questions or comments, please write here. I'd love to hear from you during the talk.
-
 Nice to meet you. Hello PyCon US 2022! let me introduce myself.
 -->
 
@@ -91,17 +96,27 @@ Nice to meet you. Hello PyCon US 2022! let me introduce myself.
 - Now, reading "[Types and Programming Languages](https://www.cis.upenn.edu/~bcpierce/tapl/)"
     - As known as "TaPL"
 
+<!--
+I'm working in CMS communications, as a web developer.
+
+I've been to learning haskell and typescript, been interested thees for several years.
+
+and more, I involved some comunities (for example, PloneJP, PyCon JP, ...)
+-->
+
 ---
 
 ## My Activities Related to PyCon JP
 
-- Staff of PyCon JP (since 2020 - ), [2022](https://2022.pycon.jp): Vice Chair
+- Staff of PyCon JP (since 2020 - ), [2022](https://2022.pycon.jp): Vice-Chair
 - Operating Member of [PyCon JP Association](https://www.pycon.jp)
     - Director of [PyCon JP TV](https://tv.pycon.jp) 
     - It's the YouTube live about PyCons and local events held once a month
 
 <!--
-In addition to my work, I'm also involved at the PyCon JP Association
+Then, I've been staff of PyCon JP since 2020, and Vice-Chair of this year.
+
+In addition, I'm a director of PyCon JP TV, as a Operating member of PyCon JP Association,
 -->
 
 ---
@@ -446,8 +461,7 @@ Next, there are few advanced types.
 
 <v-clicks at=1>
 
-- `Union`: merged type, can be represented by `|` since 3.10
-    - You've probably seen it on Haskell or TypeScript
+Merged type, can be represented by `|` since 3.10
 
 ```py {1}
 def square(number: int | float) -> int | float:
@@ -474,9 +488,11 @@ int | str == typing.Union[int, str]
 </v-clicks>
 
 <!--
-at first is union, merged type.<br>
-top half code is an Example A function that accepts both integers and<br>
-floats bottom one is Union objects can be tested for equality with other union objects.
+at first is union, merged type.
+
+You've probably seen it on Haskell or TypeScript.
+
+Top half code is an Example A function that accepts both integers and floats bottom one is Union objects can be tested for equality with other union objects.
 -->
 
 ---
@@ -588,10 +604,11 @@ layout: section
 - It describes when disruptive changes are introduced and become mandatory.
 - In addition to typing, it was also used to call 3.x features in 2.x.
     - ex) `print_func`, `unicode_literals` etc ...
-- refs: [\_\_future\_\_](https://docs.python.org/3/library/__future__.html), [future statement](https://docs.python.org/3/reference/simple_stmts.html#future)
+- ref: [\_\_future\_\_](https://docs.python.org/3/library/__future__.html), [future statement](https://docs.python.org/3/reference/simple_stmts.html#future)
 
 <!--
 Let's talk about dunder future, which has come up many times before.
+
 Modules and methods with two underscores at either end are pronounced dunder.
 -->
 
@@ -632,8 +649,10 @@ this is an updated overview recently.
 See Also: <https://docs.python.org/3/whatsnew/3.10.html#new-features-related-to-type-hints>
 
 <!--
-next topic is new features in python3.10, released Nov last year.<br>
-this year there is a difficult feature. <br>
+next topic is new features in python3.10, released Nov last year.
+
+this year there is a difficult feature.
+
 I'm not sure I can explain it well, either.
 -->
 
@@ -654,7 +673,7 @@ int | str == typing.Union[int, str]
 
 <!-- 
 You may have seen ever this style if you have experiences using typescript or other static typed lang.
- -->
+-->
 
 ---
 
@@ -686,7 +705,7 @@ def takes_int_str(x: int, y: str) -> int:
     return x + 7
 
 await takes_int_str(1, "A")
-await takes_int_str("B", 2) # fails at runtime
+await takes_int_str("B", 2)  # fails at runtime
 ```
 
 ## Approach
