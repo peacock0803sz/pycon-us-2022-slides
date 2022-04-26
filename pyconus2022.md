@@ -285,8 +285,6 @@ However, Type hint may make the review process more smooth.
     - you don't need to do anything to use them.
 - `None`: used for functions that return nothing.
 
----
-
 # Escaping from type puzzles
 
 - `Any` Can hold instances of any type.
@@ -503,7 +501,7 @@ Top half code is an Example A function that accepts both integers and floats bot
     - Behaves just like Union: `T | None`
 - If you use it in a function return value or something, it will propagate, so be careful how you use it.
 
-```py {2|3-}
+```py {1|3-}
 from typing import Optional
 
 age: Optional[int]
@@ -635,6 +633,8 @@ layout: section
 
 <!--
 this is an updated overview recently.
+
+3.7 is ...
 -->
 
 ---
@@ -687,14 +687,11 @@ Needed a way to represent a function that has the **same arguments as the specif
 from typing import Callable, TypeVar
 R = TypeVar("R")
 
-def add_logging(
-    f: Callable[..., R]
-) -> Callable[..., R]:
+def add_logging(f: Callable[..., R]) -> Callable[..., R]:
     def inner(*args: object, **kwargs: object) -> R:
         log_to_database()
         return f(*args, **kwargs)
     return inner
-
 ```
 
 ---
