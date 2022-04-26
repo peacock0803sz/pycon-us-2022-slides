@@ -36,10 +36,14 @@
 
 /* Cover {{{ */
 .slidev-layout.cover h1 {
-  @apply text-right text-6xl absolute top-20 right-10;
+  @apply text-right absolute top-20 right-10;
+  font-size: 3.2rem;
+  line-height: 3.2rem;
 }
 .slidev-layout.cover h2 {
-  @apply text-right text-4xl absolute bottom-10 right-10;
+  @apply text-right absolute bottom-10 right-10;
+  font-size: 2rem;
+  line-height: 2rem;
 }
 /* }}} */
 

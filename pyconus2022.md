@@ -91,17 +91,17 @@ Nice to meet you. Hello PyCon US 2022! let me introduce myself.
 
 - Company: [CMScom](https://cmscom.jp) (Full-time since 2020/06 ~)
     - Web application developer, Flask / Pyramid / Plone etc..
-- Member of PloneJP (Plone User's Group in Japan)
 - Experience learning haskell and typescript
 - Now, reading "[Types and Programming Languages](https://www.cis.upenn.edu/~bcpierce/tapl/)"
     - As known as "TaPL"
+- Member of PloneJP (Plone User's Group in Japan)
 
 <!--
 I'm working in CMS communications, as a web developer.
 
 I've been to learning haskell and typescript, been interested thees for several years.
 
-and more, I involved some comunities (for example, PloneJP, PyCon JP, ...)
+and more, I involved some comunities...
 -->
 
 ---
@@ -413,7 +413,7 @@ VView[ValuesView] --> C[Colleciton]
 </style>
 
 <!--
-The further to the left you go, the fewer methods it has. To the bottom the more methods it has.<br>
+The further to the bottom you go, the fewer methods it has. To the top-side, the more methods it has.<br>
 For example, if you just want to loop over a sequence of arguments in a function, you can use collections.abc.Iterable. <br>
 If you need random access, use Sequence. <br>
 If you need to change the value, use a type with Mutable.
@@ -469,8 +469,6 @@ def square(number: int | float) -> int | float:
 </v-clicks>
 
 <v-clicks at="2">
-
-Union objects can be tested for equality with other union objects.
 
 ```py {1,2|3,4|5,6|7,8}
 # Nested unions are flattened
@@ -953,6 +951,5 @@ layout: fact
 
 # Thank you
 ## See you again next time in Japan!
-
 
 ### Powered by [Slidev](https://sli.dev), using [theme-briks](https://github.com/slidevjs/themes/tree/main/packages/theme-bricks)
