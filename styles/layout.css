@@ -74,16 +74,18 @@
 
 /* default {{{ */
 .slidev-layout.default {
-  @apply px-27 py-15 leading-normal;
-  font-size: 1.7rem;
+  @apply px-20 py-15 leading-normal;
+  font-size: 2rem;
 }
 .slidev-layout.default h1 {
   @apply my-5;
-  font-size: 2.35rem;
+  font-size: 2.3rem;
+  line-height: 2.3rem;
 }
 .slidev-layout.default h2 {
   @apply my-5 text-gray-750;
   font-size: 2rem;
+  line-height: 2rem;
 }
 .slidev-layout.default p, div {
   @apply my-0 py-1 leading-normal;
@@ -101,13 +103,14 @@
   @apply text-xl px-1 py-0;
 }
 .slidev-layout.default code {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 .slidev-layout.default h1 > code {
   font-size: 2rem;
 }
 .slidev-layout.default pre > code {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
 }
 /* }}} */
 

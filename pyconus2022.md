@@ -70,16 +70,19 @@ The hashtag is `pyconus2022`
     - Social media IDs: `peacock0803sz`
         - [Twitter](https://twitter.com/peacock0803sz/), [GitHub](https://github.com/peacock0803sz/), [Facebook](https://www.facebook.com/peacock0803sz)...
     - **Please call me Peacock**
-- Hobbies & Favourites
-    - Playing the Clarinet <twemoji-musical-note />
-    - Listening Music (Most is classical)
-    - Skiing <twemoji-skier /> , Gadgets...
-- 21-years old, This is my first trip abroad <twemoji-airplane />
 
 </div>
 
 <div class="ml-2"><img src="/images/peacock0803sz.jpg" class="v-auto"></div>
 </div>
+
+---
+
+- Hobbies & Favourites
+    - Playing the Clarinet <twemoji-musical-note />
+    - Listening Music (Most is classical)
+    - Skiing <twemoji-skier /> , Gadgets...
+- 21-years old, This is my first trip abroad <twemoji-airplane />
 
 <!--
 Nice to meet you. Hello PyCon US 2022! let me introduce myself.
@@ -285,6 +288,8 @@ However, Type hint may make the review process more smooth.
     - you don't need to do anything to use them.
 - `None`: used for functions that return nothing.
 
+---
+
 # Escaping from type puzzles
 
 - `Any` Can hold instances of any type.
@@ -308,15 +313,16 @@ If you want to escape from complex type puzzles, you can use any. this is the fi
 
 - `dict`, `frozenset`, `list`, `set`, `tuple`
     - Collections can be written with `[]` for the type inside.
-        - 3.9 and later only
-        - 3.7, 3.8 write `from __future__ import annotaions` (see below)
     - ref: [official documentation](https://docs.python.org/3.9/whatsnew/3.9.html#type-hinting-generics-in-standard-collections)
-- Until 3.8, it was from `typing`, but now it's depreciated.
+- Now, it's **depreciated**.
+- So, it can use without import!.
+
+<!--
+for 3.7, 3.8: write `from __future__ import annotaions` (see below)
+-->
 
 ---
 
-- For `__builtins__` start with lowercase without doing anything.
-    - Such as `list`, `tuple`, and `dict` etc...
 - Available modules in standard library...
     - `collections`: (ex: deque, defaultdict)
     - `collections.abc`: `Iterable`, `Callable`, or other protocol-related
@@ -325,36 +331,11 @@ If you want to escape from complex type puzzles, you can use any. this is the fi
 
 ---
 
-# import from typing module
-
-**Deprecated since Python 3.9**
-
-- For Generics (such as `Dict`, `List`...,) until Python 3.9, you had to write `from typing import ...`
-    - From 3.9, it's **deprecated**!
-
-```py{1}
-from typing import Dict, List, Tuple, ...  # before 3.9
-def some_function() -> Tuple[List[int], Dict]: pass
-```
-
-Since Python 3.9, no more need these import statement!
-
-```py
-def some_function() -> tuple[list[int], dict]: pass
-```
-
-<!--
-because of the way of writing described before.
--->
-
----
-
 # Using types from collections.abc differently
 
 - There are many types in `collections.abc`.
 - It's better to use a collection with a few methods to increase portability.
 - It's a good idea to look at the methods used in your functions.
-    - Choose the types on the top side of the figure as much as possible.
 
 The figure in next page shows the relationship...
 
@@ -428,20 +409,15 @@ After you confirm that you can use fewer operators and methods, you may want to 
 
 # The difference between tuple and others Sequences
 
-<div v-click>
-
 - Tuples are fixed up to the length information
     - Specify the type for the number of elements
         - Or you can mix types, such as `tuple[int, str, float]`.
 
-</div>
-
-<div v-click>
+---
 
 - A sequence, such as a list, has the same constraint for all elements
     - Can be used regardless of the length of the sequence by setting only one.
 
-</div>
 
 ---
 layout: section
@@ -522,7 +498,7 @@ def get_content() -> str | None:
 ```
 
 - When you use the up function, you might write another guard and return `None`.
-- As a result, we need to write a guard to the previous method, which reduces readability.
+<!-- - As a result, we need to write a guard to the previous method, which reduces readability. -->
 
 ---
 
@@ -539,11 +515,12 @@ def get_content() -> str | None:
 
 # Callable (callable object)
 
-```py {1,2|4|5,6|8,9|10,11|12}
+```py {1,2|4|6,7|9,10|11,12|13}
 from collections.abc import Callable  # since 3.9
 from functools import wraps
 
-def validate(func: Callable) -> Callable[..., Callable]:
+def validate(func: Callable
+) -> Callable[..., Callable]:
     @wraps(func)
     def wrapper(*args, **kw) -> Callable:
         try:
@@ -595,9 +572,7 @@ layout: section
 
 # What is the `__future__` module?
 
-- It exists for backward compatibility.
 - Using typing new feature in the older versions, write `from __future__ import annotations`
-- It describes when disruptive changes are introduced and become mandatory.
 - In addition to typing, it was also used to call 3.x features in 2.x.
     - ex) `print_func`, `unicode_literals` etc ...
 - ref: [\_\_future\_\_](https://docs.python.org/3/library/__future__.html), [future statement](https://docs.python.org/3/reference/simple_stmts.html#future)
@@ -606,6 +581,8 @@ layout: section
 Let's talk about dunder future, which has come up many times before.
 
 Modules and methods with two underscores at either end are pronounced dunder.
+
+- It describes when disruptise changes are introduced and become mandatory.
 -->
 
 ---
@@ -660,7 +637,6 @@ I'm not sure I can explain it well, either.
 
 - The union above type can be used as an operator.
 - You can also use it when asking `isinstance()`.
-- More intuitive since TypeScipt and others use this notation.
 
 ```py
 int | str == typing.Union[int, str]
@@ -685,8 +661,9 @@ Needed a way to represent a function that has the **same arguments as the specif
 from typing import Callable, TypeVar
 R = TypeVar("R")
 
-def add_logging(f: Callable[..., R]) -> Callable[..., R]:
-    def inner(*args: object, **kwargs: object) -> R:
+def add_logging(f: Callable[..., R]
+) -> Callable[..., R]:
+    def inner(*args: object, **kw: object) -> R:
         log_to_database()
         return f(*args, **kwargs)
     return inner
@@ -707,7 +684,8 @@ await takes_int_str("B", 2)  # fails at runtime
 
 - Adding an argument type called `ParameterSpecification` solves the problem.
 - It can be used with `Callable` to behave like a generic callable object.
-    - You can think of it as an argument version of `TypeVar`.
+
+<!-- - You can think of it as an argument version of `TypeVar`. -->
 
 ---
 
@@ -717,7 +695,8 @@ await takes_int_str("B", 2)  # fails at runtime
 from typing import Callable, TypeVar
 Ps, R = TypeVar("Ps"), TypeVar("R")
 
-def add_logging(f: Callable[Ps, R]) -> Callable[Ps, R]:
+def add_logging(f: Callable[Ps, R]
+) -> Callable[Ps, R]:
     # args: tuple...?, kwargs: dict...?
     def inner(*args, **kwargs) -> R:
         log_to_database(*args, **kwargs)
@@ -737,7 +716,8 @@ def foo(x: int, y: str) -> int:
 from typing import Callable, ParameterSpecification, TypeVar
 Ps, R = ParameterSpecification("Ps"), TypeVar("R")
 
-def add_logging(f: Callable[Ps, R]) -> Callable[Ps, R]:
+def add_logging(f: Callable[Ps, R]
+) -> Callable[Ps, R]:
     def inner(*args: Ps.args, **kwargs: Ps.kwargs) -> R:
         log_to_database(*args, **kwargs)
         return f(*args, **kwargs)
@@ -756,7 +736,8 @@ def foo(x: int, y: str) -> int: return x + 7
 - We consider global variables without type hints to be type aliases.
     - This tends to cause problems with forwarding references, scoping, etc.
     - So, we're going to make it possible to explicitly define type aliases.
-- You can still define type aliases implicitly.
+
+<!-- - You can still define type aliases implicitly. -->
 
 ---
 
@@ -764,9 +745,12 @@ def foo(x: int, y: str) -> int: return x + 7
 
 - Add a new `typing.TypeAlias`
     - You can write like this `T: TypeAlias = int`
-- global-level defined variables are considered type aliases
 - You can write like: `T: TypeAlias = "int"`
     - Using ForwardReference
+
+---
+
+## Before & After
 
 ```py {1,2|4,5|7,8}
 x = 1  # untyped global expression
@@ -779,6 +763,8 @@ x: TypeAlias = int  # type alias
 x: TypeAlias = “MyClass”  # type alias
 ```
 
+<!-- - global-level defined variables are considered type aliases -->
+
 ---
 
 # [PEP 647](https://peps.python.org/pep-0647/): User-Defined Type Guards
@@ -786,7 +772,6 @@ x: TypeAlias = “MyClass”  # type alias
 ## Motivation
 
 - Type checker tools use a technique called type narrowing to determine the type of information.
-- In this example, the `if` statement and `is None` are used to automatically narrow down the type.
 
 ```py {3,4|5}
 def func(val: Optional[str]):
@@ -795,6 +780,8 @@ def func(val: Optional[str]):
         pass # Type of val is narrowed to str
     else: pass  # Type of val is narrowed to None
 ```
+
+<!-- - In this example, the `if` statement and `is None` are used to automatically narrow down the type. -->
 
 ---
 
@@ -811,19 +798,22 @@ def func1(val: List[object]):
 ```
 
 - `TypeGuard` allows you to define user-defined type guards via the new typing.
-- By using user-defined type guards, it is easier to get support for type narrowing.
+
+<!-- - By using user-defined type guards, it is easier to get support for type narrowing. -->
 
 ---
 
 ```py
 from typing import TypeGuard
 
-# It's vaild!
-def is_str_list(val: List[object]) -> TypeGuard[List[str]]:
+def is_str_list(val: List[object]
+) -> TypeGuard[List[str]]:
     return all(isinstance(x, str) for x in val)  
 ```
 
-And, type narrowing works like this:
+And, type narrowing works like next:
+
+---
 
 ```py{3|8,9|10}
 def is_two_element_tuple(
@@ -859,7 +849,7 @@ Python 3.11 is focused on performance tuning, <br> but there are also new featur
 
 # Motivation
 
-When we call set_scale on a subclass of Shape, the type checker still infers the return type to be `Shape`.
+Calling `set_scale` on a subclass of `Shape`, the type checker still infers the return type to be `Shape`.
 
 ```py{2|6|7,8}
 class Circle(Shape):
@@ -874,14 +864,15 @@ Circle().set_scale(0.5).set_radius(2.7)
 
 ---
 
-# Here is workaround, but it's unintuitive...
+# Workaround, but it's unintuitive...
 
-```py {2,5|10|14}
+```py {2,5,6|11|15}
 from typing import TypeVar
 TShape = TypeVar("TShape", bound="Shape")
 
 class Shape:
-    def set_scale(self: TShape, scale: float) -> TShape:
+    def set_scale(self: TShape, scale: float
+    ) -> TShape:
         self.scale = scale
         return self
 
@@ -897,8 +888,6 @@ Circle().set_scale(0.5).set_radius(2.7)  # => Circle
 
 # `typing.Self` resolves that unintuitively
 
-There is no logner to use `typing.TypeVar`!
-
 ```py {1|2,3|7,8|12}
 from typing import Self
 class Shape:
@@ -911,17 +900,22 @@ class Circle(Shape):
         self.radius = radius
         return self
 
-Circle().set_scale(0.5)  # => the type would be *Circle*
+Circle().set_scale(0.5)  # => It would be *Circle*!
 ```
+
+<!-- There is no logner to use `typing.TypeVar`! -->
 
 ---
 
 # Summary
 
-1. Benefits for typing, starting with `def`, Built-in types
-2. Standard collection starting with lowercase (since 3.9)
+1. Benefits, starting with `def`, Built-in types
+2. Standard collections (since 3.9)
 3. Collections, Union, Optional, Callable, User-defined Generics
-4. Updates Overview, using `__future__` for compatibility
+4. Updates Overview,`__future__` for compatibility
+
+---
+
 5. New features on Python 3.10 and 3.11
     1. 3.10: New Type Union Operator, Parameter Specific Variables, TypeAlias, User-Defined Type Guards
     2. 3.11: Self Type
@@ -939,11 +933,18 @@ There are links that I referenced. Thank you!
 - <https://docs.python.org/3/library/typing.html>
 - <https://docs.python.org/3.10/whatsnew/3.10.html>
 - <https://docs.python.org/3.11/whatsnew/3.11.html>
-- <http://mypy-lang.org>
 - <https://future-architect.github.io/articles/20201223> (ja)
 - <https://qiita.com/tk0miya/items/931da13af292060356b9> (ja)
 - <https://qiita.com/tk0miya/items/1b093c2eee7668fffb62> (ja)
 - <https://qiita.com/tk0miya/items/a27191f5d627601930ed> (ja)
+
+<style>
+.slidev-layout.default {
+  @apply px-20 py-15 leading-normal;
+  font-size: 1.7rem;
+  line-height: 1.7rem;
+}
+</style>
 
 ---
 layout: fact
