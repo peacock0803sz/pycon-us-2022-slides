@@ -74,7 +74,7 @@
 
 /* default {{{ */
 .slidev-layout.default {
-  @apply px-20 py-15 leading-normal;
+  @apply px-20 py-5 leading-normal;
   font-size: 2rem;
 }
 .slidev-layout.default h1 {
