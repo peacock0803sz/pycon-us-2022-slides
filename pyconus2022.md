@@ -24,7 +24,7 @@ layout: intro
 
 # Prolog
 
-## Self-introduction, <br> Table of contents
+## Self-Introduction, <br> Table of Contents
 
 ---
 
@@ -60,7 +60,7 @@ The hashtag is `pyconus2022`
 
 ---
 
-# Self-introduction
+# Self-Introduction
 
 <div class="grid grid-cols-[75%,25%] gap-2">
 
@@ -85,26 +85,26 @@ The hashtag is `pyconus2022`
 - 21-years old, This is my first trip abroad <twemoji-airplane />
 
 <!--
-Nice to meet you. Hello PyCon US 2022! let me introduce myself.
+Nice to meet you. Hello, PyCon US 2022! Let me introduce myself.
 -->
 
 ---
 
-# My Works and community
+# My Works and Communities
 
 - Company: [CMScom](https://cmscom.jp) (Full-time since 2020/06 ~)
     - Web application developer, Flask / Pyramid / Plone etc..
-- Experience learning haskell and typescript
+- Experience learning Haskell and TypeScript
 - Now, reading "[Types and Programming Languages](https://www.cis.upenn.edu/~bcpierce/tapl/)"
     - As known as "TaPL"
 - Member of PloneJP (Plone User's Group in Japan)
 
 <!--
-I'm working in CMS communications, as a web developer.
+I'm working in CMS communications as a web developer.
 
-I've been to learning haskell and typescript, been interested thees for several years.
+I've been learning Haskell and TypeScript, been interested thees for several years.
 
-and more, I involved some comunities...
+And more, I involved some communities...
 -->
 
 ---
@@ -117,14 +117,14 @@ and more, I involved some comunities...
     - It's the YouTube live about PyCons and local events held once a month
 
 <!--
-Then, I've been staff of PyCon JP since 2020, and Vice-Chair of this year.
+Then, I've been a staff of PyCon JP since 2020 and Vice-Chair of this year.
 
-In addition, I'm a director of PyCon JP TV, as a Operating member of PyCon JP Association,
+In addition, I'm a director of PyCon JP TV as an Operating member of the PyCon JP Association,
 -->
 
 ---
 
-# Today's topic
+# Today's Topics
 
 <v-clicks>
 
@@ -143,7 +143,7 @@ this is today's topic.
 
 ---
 
-# Why do I talk about typing?
+# Why do I talk about Typing?
 
 - It's been 7 years since typing appeared
     - In Python 3.5, at 2015
@@ -153,12 +153,12 @@ this is today's topic.
 
 <!--
 My motivation for talking is to get the word out in a coherent way.
-It's been five years (Python 3.5, at 2015) since typing appeared
+It's been five years (Python 3.5, in 2015) since typing appeared.
 -->
 
 ---
 
-# I will not talk about
+# What I will NOT talk about
 
 - Developing library with typing
 - Configures and options of mypy
@@ -171,9 +171,9 @@ It's been five years (Python 3.5, at 2015) since typing appeared
 layout: section
 ---
 
-# First step of typing
+# First step of Typing
 
-## How to write basically
+## Basic Typing
 
 <!--
 OK, Let's take a look at how to actually start Typing!
@@ -193,7 +193,7 @@ First, let's look at what typing can do for you.
 
 ---
 
-## Without the type hint
+## Without the Typing
 
 <img src="/images/1.png" class="h-35 mt-1 mb-10">
 
@@ -203,13 +203,13 @@ We don't know the error...
 
 <!--
 this is a minimal example.
-we don't know the type of return value...
-if try to pass int to the function, it'll occur an error
+We don't know the type of return value...
+if you try to pass an int to the function, it'll occur an error
 -->
 
 ---
 
-## With the type hint
+## With the Typing
 
 <img src="/images/3.png" class="h-30 my-1">
 
@@ -225,7 +225,7 @@ How about this case? It looks like s is str, a return value is also str.
 
 ---
 
-# In a code review, without the type hint...
+# In a code review, without Typing...
 
 Boss < What type does this function return?
 
@@ -250,7 +250,7 @@ As a result, many people may have had this experience.
 
 ---
 
-# With the type hint
+# With Typing...
 
 Boss < It looks like this function may return 3 types... Isn't that too much?
 
@@ -273,24 +273,24 @@ However, Type hint may make the review process more smooth.
 
 # Let's start with function definitions
 
-**Noting to difficult!** Just write type
+**Nothing too difficult!** Just write type
 
-- After the arguments, write colon and type
-- Before the colon at the end of the function definition, write an arrow and type
+- After the arguments, write colon and the type
+- Before the colon at the end of the function definition, write an arrow and the type
 
 <img src="/images/3.png" class="h-40 mt-5">
 
 ---
 
-## Using built-in types
+# Using built-in types
 
 - `bool`, `bytes`, `float`, `int`, `str`
-    - you don't need to do anything to use them.
-- `None`: used for functions that return nothing.
+    - You don't need to do anything to use them.
+- `None`: Used for functions that return nothing.
 
 ---
 
-# Escaping from type puzzles
+# Escaping from complex type puzzles
 
 - `Any` Can hold instances of any type.
 - **It's better not to use it**
@@ -311,40 +311,44 @@ If you want to escape from complex type puzzles, you can use any. this is the fi
 
 # (Since 3.9) Generics in standard Collections
 
-- `dict`, `frozenset`, `list`, `set`, `tuple`
+- Before 3.9, `from typing import Dict, List` ...
+    - Now, it's **depreciated**
+- Use `dict`, `frozenset`, `list`, `set`, `tuple`
     - Collections can be written with `[]` for the type inside.
-    - ref: [official documentation](https://docs.python.org/3.9/whatsnew/3.9.html#type-hinting-generics-in-standard-collections)
-- Now, it's **depreciated**.
-- So, it can use without import!.
+    - ref: [Official Documentation](https://docs.python.org/3.9/whatsnew/3.9.html#type-hinting-generics-in-standard-collections)
 
 <!--
+Starts from the upper case are now depreciated <br>
+So, it can be used without import!.
+
 for 3.7, 3.8: write `from __future__ import annotaions` (see below)
 -->
 
 ---
 
-- Available modules in standard library...
+- Module Availabilities in standard library...
     - `collections`: (ex: deque, defaultdict)
-    - `collections.abc`: `Iterable`, `Callable`, or other protocol-related
-    - `re`: Regular expressions 
-    - `contextlib`: Context-related items
+    - `collections.abc`: `Iterable`, `Callable`, or other Protocol-Related
+    - `re`: Regular Expressions 
+    - `contextlib`: Context-Related items
 
 ---
 
-# Using types from collections.abc differently
+# Using types from `collections.abc` differently
 
 - There are many types in `collections.abc`.
 - It's better to use a collection with a few methods to increase portability.
+    - Ex. `Iterable` is better than `list`.
 - It's a good idea to look at the methods used in your functions.
 
-The figure in next page shows the relationship...
+The figure on the next page shows the relationship...
 
 <!--
 There are many types in collections.abc.
 
 Although it's unlikely that you will use these in a fine-grained way,
 
-It's better to choose a collection with as few methods as possible to increase portability.
+Choosing a collection with as few methods as possible is better to increase portability.
 
 The following figure shows the relationship between collections.abc and a sequence of built-in types defined by method inclusion rather than implementation inheritance.
 
@@ -394,12 +398,12 @@ VView[ValuesView] --> C[Colleciton]
 </style>
 
 <!--
-The further to the bottom you go, the fewer methods it has. To the top-side, the more methods it has.<br>
+The further to the bottom you go, the fewer methods it has. On the top-side, the more methods it has.<br>
 For example, if you just want to loop over a sequence of arguments in a function, you can use collections.abc.Iterable. <br>
 If you need random access, use Sequence. <br>
 If you need to change the value, use a type with Mutable.
 
-Or, if you simply specify list as the argument type, you will not be able to pass set or dict.<br>
+Or, if you simply specify the list as the argument type, you will not be able to pass set or dict.<br>
 In particular, it is better not to set concrete types (list, tuple, dictionary, set) just because you are familiar with them.<br>
 However, I think it is easier to understand using these concrete types, so you may want to first apply these concrete types.<br>
 After you confirm that you can use fewer operators and methods, you may want to gradually move to the top side of the types.<br>
@@ -407,35 +411,35 @@ After you confirm that you can use fewer operators and methods, you may want to 
 
 ---
 
-# The difference between tuple and others Sequences
+# The differences between tuple and other Sequences
 
-- Tuples are fixed up to the length information
+- `tuple` is fixed up to the length of information
     - Specify the type for the number of elements
         - Or you can mix types, such as `tuple[int, str, float]`.
 
 ---
 
-- A sequence, such as a list, has the same constraint for all elements
-    - Can be used regardless of the length of the sequence by setting only one.
+- A sequence, such as a `list`, has the same constraint for all elements
+    - Can be used regardless of the length of the Sequence by setting only one.
 
 
 ---
 layout: section
 ---
 
-# Advanced: <br> Generic types
+# Advanced: <br> Generic Types
 
 <!--
-Next, there are few advanced types.
+Next, there are a few advanced types.
 -->
 
 ---
 
-# Union (Mager type)
+# Union (multiple types)
 
 <v-clicks at=1>
 
-Merged type, can be represented by `|` since 3.10
+`union` can be represented by `|` since 3.10
 
 ```py {1}
 def square(number: int | float) -> int | float:
@@ -451,7 +455,7 @@ def square(number: int | float) -> int | float:
 (int | str) | float == int | str | float
 # Redundant types are removed
 int | str | int == int | str
-# Order is ignored
+# Orders are ignored
 int | str == str | int
 # Compatible with typing.Union
 int | str == typing.Union[int, str]
@@ -460,11 +464,11 @@ int | str == typing.Union[int, str]
 </v-clicks>
 
 <!--
-at first is union, merged type.
+At first is union, multiple types.
 
 You've probably seen it on Haskell or TypeScript.
 
-Top half code is an Example A function that accepts both integers and floats bottom one is Union objects can be tested for equality with other union objects.
+The top half code is an Example A function that accepts both integers and floats bottom one is Union objects that can be tested for equality with other union objects.
 -->
 
 ---
@@ -473,7 +477,7 @@ Top half code is an Example A function that accepts both integers and floats bot
 
 - Shorthand, `Optional[T]` is equivalent to Union with None.
     - Behaves just like Union: `T | None`
-- If you use it in a function return value or something, it will propagate, so be careful how you use it.
+- If you use it in a function return value or something, it will propagate, so be careful when you use it.
 
 ```py {1|3-}
 from typing import Optional
@@ -485,7 +489,7 @@ age = None # This is also valid
 
 ---
 
-# Avoid Optional as much as possible
+# Avoid using Optional as much as possible
 
 ```py {2|3-5|6}
 def get_content() -> str | None:
@@ -497,8 +501,8 @@ def get_content() -> str | None:
   return r.text
 ```
 
-- When you use the up function, you might write another guard and return `None`.
-<!-- - As a result, we need to write a guard to the previous method, which reduces readability. -->
+- When you use the function, you might write another guard and return `None`.
+<!-- As a result, we need to write a guard to the previous method, which reduces readability. -->
 
 ---
 
@@ -506,14 +510,13 @@ def get_content() -> str | None:
 
 - It would be cleaner to raise a `raise RuntimeError`.
     - The cost of raising exceptions in Python is (relatively) low
-        - The performance would be satisfactory.
-- The lack of null-safe methods in Python is also a factor
-    - But if there were such methods, they would be abused.
-    - Null-safe means a method that does not raise an exception when passed None.
+        - Little performance impact, unlike Java.
+- The lack of null-safe methods in Python is also a factor, Unlike JavaScript.
+    - But, if there were such methods, they would be abused.
 
 ---
 
-# Callable (callable object)
+# Callable (callable objects)
 
 ```py {1,2|4|6,7|9,10|11,12|13}
 from collections.abc import Callable  # since 3.9
@@ -589,7 +592,7 @@ Modules and methods with two underscores at either end are pronounced dunder.
 layout: section
 ---
 
-# Updates Overview Recently
+# Recent Update
 
 ---
 
@@ -624,9 +627,9 @@ this is an updated overview recently.
 See Also: <https://docs.python.org/3/whatsnew/3.10.html#new-features-related-to-type-hints>
 
 <!--
-next topic is new features in python3.10, released Nov last year.
+The next topic is new features in python3.10, released Nov last year.
 
-this year there is a difficult feature.
+There is a difficult feature.
 
 I'm not sure I can explain it well, either.
 -->
@@ -646,7 +649,7 @@ int | str == typing.Union[int, str]
 - `Optional[T]` can also be written as `T | None` using this.
 
 <!-- 
-You may have seen ever this style if you have experiences using typescript or other static typed lang.
+You may have seen this style if you have experience using typescript or other static typed langs.
 -->
 
 ---
