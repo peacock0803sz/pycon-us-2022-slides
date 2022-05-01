@@ -237,9 +237,9 @@ You < :-(
 
 ```py {2|3|4}
 def need_new_post():
-    if ...: retrun None
-    elif ...: retrun False
-    else: return post_id  # this is str
+  if ...: retrun None
+  elif ...: retrun False
+  else: return post_id  # this is str
 ```
 
 <!--
@@ -260,9 +260,9 @@ Boss < Sure, please.
 
 ```py {1}
 def need_new_post() -> None | False | str:
-    if ...: retrun None
-    elif ...: retrun False
-    else: return post_id  # this is str
+  if ...: retrun None
+  elif ...: retrun False
+  else: return post_id  # this is str
 ```
 
 <!--
@@ -439,7 +439,7 @@ Merged type, can be represented by `|` since 3.10
 
 ```py {1}
 def square(number: int | float) -> int | float:
-    return number ** 2
+  return number ** 2
 ```
 
 </v-clicks>
@@ -489,12 +489,12 @@ age = None # This is also valid
 
 ```py {2|3-5|6}
 def get_content() -> str | None:
-    r = request.get("https://example.com")
-    if r.status_code != 200:
-        # Guard section (early return)
-        logging.warning("Response: %d", r.status_code)
-        return None
-    return r.text
+  r = request.get("https://example.com")
+  if r.status_code != 200:
+    # Guard section (early return)
+    logging.warning("Response: %d", r.status_code)
+    return None
+  return r.text
 ```
 
 - When you use the up function, you might write another guard and return `None`.
@@ -521,15 +521,15 @@ from functools import wraps
 
 def validate(func: Callable
 ) -> Callable[..., Callable]:
-    @wraps(func)
-    def wrapper(*args, **kw) -> Callable:
-        try:
-            j = request.json
-            if j is None: raise BadRequest
-        except BadRequest:
-            return abort(400)
-        return func(*args, **kw)
-    return wrapper
+  @wraps(func)
+  def wrapper(*args, **kw) -> Callable:
+    try:
+      j = request.json
+      if j is None: raise BadRequest
+    except BadRequest:
+      return abort(400)
+    return func(*args, **kw)
+  return wrapper
 ```
 
 <!--
@@ -547,15 +547,15 @@ from typing import TypeVar, Generic
 KT, VT = TypeVar("KT"), TypeVar("VT")
 
 class Mapping(Generic[KT, VT]):
-    def __getitem__(self, key: KT) -> VT: pass
+  def __getitem__(self, key: KT) -> VT: pass
 
 X, Y = TypeVar("X"), TypeVar("Y")
 
 def lookup_name(  # Using Mapping
-    mapping: Mapping[X, Y], key: X, default: Y
+  mapping: Mapping[X, Y], key: X, default: Y
 ) -> Y:
-    try: return mapping[key]
-    except KeyError: return default
+  try: return mapping[key]
+  except KeyError: return default
 ```
 
 <!--
@@ -663,10 +663,10 @@ R = TypeVar("R")
 
 def add_logging(f: Callable[..., R]
 ) -> Callable[..., R]:
-    def inner(*args: object, **kw: object) -> R:
-        log_to_database()
-        return f(*args, **kwargs)
-    return inner
+  def inner(*args: object, **kw: object) -> R:
+    log_to_database()
+    return f(*args, **kwargs)
+  return inner
 ```
 
 ---
@@ -674,7 +674,7 @@ def add_logging(f: Callable[..., R]
 ```py {}
 @add_logging
 def takes_int_str(x: int, y: str) -> int:
-    return x + 7
+  return x + 7
 
 await takes_int_str(1, "A")
 await takes_int_str("B", 2)  # fails at runtime
@@ -697,15 +697,15 @@ Ps, R = TypeVar("Ps"), TypeVar("R")
 
 def add_logging(f: Callable[Ps, R]
 ) -> Callable[Ps, R]:
-    # args: tuple...?, kwargs: dict...?
-    def inner(*args, **kwargs) -> R:
-        log_to_database(*args, **kwargs)
-        return f(*args, **kwargs)
-    return inner
+  # args: tuple...?, kwargs: dict...?
+  def inner(*args, **kwargs) -> R:
+    log_to_database(*args, **kwargs)
+    return f(*args, **kwargs)
+  return inner
 
 @add_logging
 def foo(x: int, y: str) -> int:
-    return x + 7
+  return x + 7
 ```
 
 ---
@@ -718,10 +718,10 @@ Ps, R = ParameterSpecification("Ps"), TypeVar("R")
 
 def add_logging(f: Callable[Ps, R]
 ) -> Callable[Ps, R]:
-    def inner(*args: Ps.args, **kwargs: Ps.kwargs) -> R:
-        log_to_database(*args, **kwargs)
-        return f(*args, **kwargs)
-    return inner
+  def inner(*args: Ps.args, **kwargs: Ps.kwargs) -> R:
+    log_to_database(*args, **kwargs)
+    return f(*args, **kwargs)
+  return inner
 
 @add_logging
 def foo(x: int, y: str) -> int: return x + 7
@@ -775,10 +775,10 @@ x: TypeAlias = “MyClass”  # type alias
 
 ```py {3,4|5}
 def func(val: Optional[str]):
-    # "is None" type guard
-    if val is not None: 
-        pass # Type of val is narrowed to str
-    else: pass  # Type of val is narrowed to None
+  # "is None" type guard
+  if val is not None: 
+    pass # Type of val is narrowed to str
+  else: pass  # Type of val is narrowed to None
 ```
 
 <!-- - In this example, the `if` statement and `is None` are used to automatically narrow down the type. -->
@@ -789,11 +789,11 @@ However, that will not work as intended if the user function is used.
 
 ```py{3|6}
 def is_str_list(val: List[object]) -> bool:
-    """Determines whether all objects in the list are str"""
-    return all(isinstance(x, str) for x in val)
+  """Determines whether all objects in the list are str"""
+  return all(isinstance(x, str) for x in val)
 
 def func1(val: List[object]):
-    if is_str_list(val): print(" ".join(val))
+  if is_str_list(val): print(" ".join(val))
 # => Error: invalid type
 ```
 
@@ -808,7 +808,7 @@ from typing import TypeGuard
 
 def is_str_list(val: List[object]
 ) -> TypeGuard[List[str]]:
-    return all(isinstance(x, str) for x in val)  
+  return all(isinstance(x, str) for x in val)  
 ```
 
 And, type narrowing works like next:
@@ -817,15 +817,15 @@ And, type narrowing works like next:
 
 ```py{3|8,9|10}
 def is_two_element_tuple(
-    val: Tuple[str, ...]
+  val: Tuple[str, ...]
 ) -> TypeGuard[Tuple[str, str]]:
-    return len(val) == 2
+  return len(val) == 2
 
 OneOrTwoStrs = Union[Tuple[str], Tuple[str, str]]
 def func(val: OneOrTwoStrs):
-    if is_two_element_tuple(val):
-        reveal_type(val)  # Tuple[str, str]
-    else: reveal_type(val)   # OneOrTwoStrs
+  if is_two_element_tuple(val):
+    reveal_type(val)  # Tuple[str, str]
+  else: reveal_type(val)   # OneOrTwoStrs
 ```
 
 <!--
@@ -853,9 +853,9 @@ Calling `set_scale` on a subclass of `Shape`, the type checker still infers the 
 
 ```py{2|6|7,8}
 class Circle(Shape):
-    def set_radius(self, r: float) -> Circle:
-        self.radius = r
-        return self
+ def set_radius(self, r: float) -> Circle:
+   self.radius = r
+   return self
 
 Circle().set_scale(0.5)  # *Shape*, not Circle
 Circle().set_scale(0.5).set_radius(2.7)  
@@ -871,15 +871,15 @@ from typing import TypeVar
 TShape = TypeVar("TShape", bound="Shape")
 
 class Shape:
-    def set_scale(self: TShape, scale: float
-    ) -> TShape:
-        self.scale = scale
-        return self
+  def set_scale(self: TShape, scale: float
+  ) -> TShape:
+    self.scale = scale
+    return self
 
 class Circle(Shape):
-    def set_radius(self, radius: float) -> Circle:
-        self.radius = radius
-        return self
+  def set_radius(self, radius: float) -> Circle:
+    self.radius = radius
+    return self
 
 Circle().set_scale(0.5).set_radius(2.7)  # => Circle
 ```
@@ -891,14 +891,14 @@ Circle().set_scale(0.5).set_radius(2.7)  # => Circle
 ```py {1|2,3|7,8|12}
 from typing import Self
 class Shape:
-    def set_scale(self, scale: float) -> Self:
-        self.scale = scale
-        return self
+  def set_scale(self, scale: float) -> Self:
+    self.scale = scale
+    return self
 
 class Circle(Shape):
-    def set_radius(self, radius: float) -> Self:
-        self.radius = radius
-        return self
+  def set_radius(self, radius: float) -> Self:
+    self.radius = radius
+    return self
 
 Circle().set_scale(0.5)  # => It would be *Circle*!
 ```
